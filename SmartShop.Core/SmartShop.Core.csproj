@@ -27,11 +27,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\" />
+    <ProjectReference Include="..\SmartShop.Services\SmartShop.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SmartShop.Services\SmartShop.Services.csproj" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>
