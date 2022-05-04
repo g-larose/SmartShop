@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SmartShop.Data.Helpers;
 using System;
 
 namespace SmartShop.Data.Factories
@@ -7,8 +8,8 @@ namespace SmartShop.Data.Factories
     {
         public AppDbContext CreateDbContext()
         {
-            var dataService = new DataService();
-            var conString = dataService.GetConfigurationJson();
+            var dataHelper = new DataHelper();
+            var conString = dataHelper.GetConnectionString();
             var connStr = conString.ConnectionString;
             var options = new DbContextOptionsBuilder<AppDbContext>();
 
