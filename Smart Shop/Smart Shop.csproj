@@ -42,7 +42,6 @@
     <Folder Include="Theme\Dark\" />
     <Folder Include="Theme\Light\" />
     <Folder Include="Theme\Styles\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
   </ItemGroup>
 
