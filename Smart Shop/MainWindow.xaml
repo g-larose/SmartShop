@@ -3,10 +3,82 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Smart_Shop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Height="850" Width="1200">
+    <Grid Height="850" Width="1200">
+        <Border Height="830" Width="1180"
+                CornerRadius="14"
+                Background="#151819"
+                VerticalAlignment="Top">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="28"
+                                  ShadowDepth="14"
+                                  Direction="270"
+                                  Color="Black"
+                                  Opacity=".6" />
+            </Border.Effect>
+            
+        <!--#region  MAIN WINDOW WRAPPER -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <!-- Left Navigation Cell -->
+                    <ColumnDefinition Width="200" />
+                    <!-- Main Content Cell -->
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <!-- Header Cell -->
+                    <RowDefinition Height="40" />
+                    <!-- Main Content Cell-->
+                    <RowDefinition Height="*" />
+                    <!-- Footer Cell -->
+                    <RowDefinition Height="3" />
+                </Grid.RowDefinitions>
+                
+                <!--#region HEADER -->
 
+                <Border Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        CornerRadius="14 14 0 0"
+                        Background="{StaticResource SecondaryHueMidBrush}"
+                        MouseDown="OnMouseDown">
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1"
+                                   Text="Smart Shop"
+                                   Foreground="{StaticResource PrimaryHueLightBrush}"
+                                   FontSize="28" 
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                    
+
+                </Border>
+
+                <!--#endregion-->
+                
+                <!--#region  FOOTER -->
+                <Border Grid.Column="0"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        CornerRadius="0 0 14 14"
+                        Background="{StaticResource SecondaryHueMidBrush}" />
+                 <!--#endregion-->
+            </Grid>
+            <!--#endregion-->
+            
+        </Border> 
     </Grid>
+   
 </Window>
