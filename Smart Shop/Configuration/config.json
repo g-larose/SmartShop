@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    "WebConnection": "",
+    "LocalConnection": "Host=localhost;Port=5432;Database=SmartShopDb;User ID=postgres;Password=451145_Gl;"
+ }
+}
