@@ -57,13 +57,21 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0"
-                                   Text="Smart Shop"
-                                   Foreground="{StaticResource PrimaryColorBrush}"
-                                   FontSize="18" 
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Center"
-                                   Margin="20 0"/>
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Column="0">
+                             <TextBlock Text="Smart Shop"
+                                        Foreground="{StaticResource PrimaryColorBrush}"
+                                        FontSize="18" 
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Margin="20 0"/>
+                             <TextBlock Text="{Binding BuildVer, FallbackValue=Build Version}"
+                                        FontSize="12"
+                                        Foreground="{StaticResource PrimaryColorBrush}"
+                                        Opacity=".5" 
+                                        VerticalAlignment="Center"/>
+                        </StackPanel>
+                       
                         <Button Grid.Column="2"
                                 Height="30"
                                 Width="50"

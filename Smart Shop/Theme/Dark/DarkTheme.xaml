@@ -1,16 +1,15 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
-    <!--Colors -->
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  Colors  -->
     <Color x:Key="Primary">#bcc1cd</Color>
     <Color x:Key="Secondary">#23201a</Color>
     <Color x:Key="Accent">#727e97</Color>
-    <Color x:Key="SecondaryDarkAccent"> #555E72</Color>
+    <Color x:Key="SecondaryDarkAccent">#555E72</Color>
     <Color x:Key="Background">#232221</Color>
     <Color x:Key="SecondaryBackground">#41403F</Color>
     <Color x:Key="Text">#fbfaf9</Color>
-    
-    <!-- Brushes -->
+
+    <!--  Brushes  -->
     <SolidColorBrush x:Key="PrimaryColorBrush" Color="{StaticResource Primary}" />
     <SolidColorBrush x:Key="SecondaryColorBrush" Color="{StaticResource Secondary}" />
     <SolidColorBrush x:Key="AccentColorBrush" Color="{StaticResource Accent}" />
@@ -19,16 +18,16 @@
     <SolidColorBrush x:Key="SecondaryBackgroundColorBrush" Color="{StaticResource SecondaryBackground}" />
     <SolidColorBrush x:Key="TextColorBrush" Color="{StaticResource Text}" />
 
-    <!-- Gradients -->
-    
+    <!--  Gradients  -->
+
     <!--  PrimaryToSecondary  -->
     <LinearGradientBrush x:Key="PrimaryBackgroundToSecondaryBackgroundGradientBrush" StartPoint="0.5,0" EndPoint="0.5,1">
         <GradientStop Offset="0.0" Color="{StaticResource Background}" />
         <GradientStop Offset="1.0" Color="{StaticResource SecondaryBackground}" />
     </LinearGradientBrush>
-    <!--  End PrimaryToSecondary  -->  
-    
-     <!--  AccentToSecondaryAccent  -->
+    <!--  End PrimaryToSecondary  -->
+
+    <!--  AccentToSecondaryAccent  -->
     <LinearGradientBrush x:Key="AccentToSecondaryAccentGradientBrush" StartPoint="0.5,0" EndPoint="0.5,1">
         <GradientStop Offset="0.0" Color="{StaticResource Accent}" />
         <GradientStop Offset="1.0" Color="{StaticResource SecondaryDarkAccent}" />
