@@ -14,7 +14,7 @@
     <Grid Height="850" Width="1200">
         <Border Height="830" Width="1180"
                 CornerRadius="14"
-                Background="#151819"
+                Background="{StaticResource PrimaryBackgroundToSecondaryBackgroundGradientBrush}"
                 VerticalAlignment="Top">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="28"
@@ -34,11 +34,11 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <!-- Header Cell -->
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="32" />
                     <!-- Main Content Cell-->
                     <RowDefinition Height="*" />
                     <!-- Footer Cell -->
-                    <RowDefinition Height="3" />
+                    <RowDefinition Height="4" />
                 </Grid.RowDefinitions>
                 
                 <!--#region HEADER -->
@@ -46,7 +46,9 @@
                 <Border Grid.Column="0"
                         Grid.ColumnSpan="3"
                         CornerRadius="14 14 0 0"
-                        Background="{StaticResource SecondaryHueMidBrush}"
+                        Background="{StaticResource SecondaryColorBrush}"
+                        BorderBrush="Black"
+                        BorderThickness="0 0 0 .5"
                         MouseDown="OnMouseDown">
                     
                     <Grid>
@@ -55,12 +57,31 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1"
+                        <TextBlock Grid.Column="0"
                                    Text="Smart Shop"
-                                   Foreground="{StaticResource PrimaryHueLightBrush}"
-                                   FontSize="28" 
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
+                                   Foreground="{StaticResource PrimaryColorBrush}"
+                                   FontSize="18" 
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="20 0"/>
+                        <Button Grid.Column="2"
+                                Height="30"
+                                Width="50"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                HorizontalAlignment="Right"
+                                Margin="10 0"
+                                Click="OnCloseClick">
+                            <md:PackIcon Kind="Power"
+                                         Height="20"
+                                         Width="20" 
+                                         BorderBrush="Transparent"
+                                         BorderThickness="0"
+                                         Foreground="DarkRed"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center"/>
+                        </Button>
                     </Grid>
                     
 
@@ -73,7 +94,7 @@
                         Grid.Row="2"
                         Grid.ColumnSpan="2"
                         CornerRadius="0 0 14 14"
-                        Background="{StaticResource SecondaryHueMidBrush}" />
+                        Background="{StaticResource AccentColorBrush}" />
                  <!--#endregion-->
             </Grid>
             <!--#endregion-->

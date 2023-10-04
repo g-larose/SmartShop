@@ -26,5 +26,10 @@ namespace Smart_Shop
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
+
+        private void OnCloseClick(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
