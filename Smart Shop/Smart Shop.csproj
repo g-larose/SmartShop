@@ -33,13 +33,10 @@
     <Folder Include="Data\Json\" />
     <Folder Include="Data\Xml\" />
     <Folder Include="Models\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Factories\" />
     <Folder Include="Navigation\" />
     <Folder Include="Commands\" />
     <Folder Include="Converters\" />
-    <Folder Include="Services\" />
-    <Folder Include="Theme\Dark\" />
     <Folder Include="Theme\Light\" />
     <Folder Include="Theme\Styles\" />
     <Folder Include="Views\" />

@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Smart_Shop.Interfaces;
+using Smart_Shop.Services;
 using Smart_Shop.ViewModels;
 using System.Configuration;
 using System.Data;
@@ -19,6 +21,7 @@ public partial class App : Application
             {
                 DataContext = s.GetRequiredService<AppViewModel>()
             });
+            services.AddSingleton<IUtility, UtilityService>();
 
         }).Build();
     }
