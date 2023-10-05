@@ -28,7 +28,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <!-- Left Navigation Cell -->
-                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="100" />
                     <!-- Main Content Cell -->
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
@@ -95,6 +95,40 @@
 
                 </Border>
 
+                <!--#endregion-->
+                
+                <!--#endregion NAVIGATION -->
+                <Grid Grid.Column="0"
+                      Grid.Row="1">
+                    <Border BorderBrush="White"
+                            BorderThickness="0 0 .5 0"
+                            Margin="0 20"
+                            Opacity=".4">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0"
+                                    Height="60"
+                                    Width="60"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <md:PackIcon Kind="Home"
+                                             Height="40"
+                                             Width="40"
+                                             Foreground="{StaticResource PrimaryColorBrush}" 
+                                             HorizontalAlignment="Center"/>
+                            </Button>
+                        </Grid>
+                        
+                    </Border>
+                </Grid>
+                
                 <!--#endregion-->
                 
                 <!--#region  FOOTER -->
