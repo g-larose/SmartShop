@@ -1,6 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Smart_Shop.Data;
+using Smart_Shop.Factories;
 using Smart_Shop.Interfaces;
+using Smart_Shop.Navigation;
 using Smart_Shop.Services;
 using Smart_Shop.ViewModels;
 using System.Configuration;
@@ -17,11 +22,16 @@ public partial class App : Application
         _host = Host.CreateDefaultBuilder().ConfigureServices(services =>
         {
             services.AddSingleton<AppViewModel>();
+            services.AddSingleton<SettingsViewModel>();
             services.AddSingleton<MainWindow>(s => new MainWindow()
             {
                 DataContext = s.GetRequiredService<AppViewModel>()
             });
+            services.AddSingleton<INavigator, Navigator>();
             services.AddSingleton<IUtility, UtilityService>();
+            services.AddSingleton<IDbContextFactory<AppDbContext>, DbContextFactory>();
+            services.AddSingleton<IDataService, DataService>();
+            services.AddSingleton<WeakReferenceMessenger>();
 
         }).Build();
     }

@@ -32,14 +32,8 @@
   <ItemGroup>
     <Folder Include="Data\Json\" />
     <Folder Include="Data\Xml\" />
-    <Folder Include="Models\" />
-    <Folder Include="Factories\" />
-    <Folder Include="Navigation\" />
-    <Folder Include="Commands\" />
     <Folder Include="Converters\" />
     <Folder Include="Theme\Light\" />
-    <Folder Include="Theme\Styles\" />
-    <Folder Include="Views\" />
   </ItemGroup>
 
   <ItemGroup>
