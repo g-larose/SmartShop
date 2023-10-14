@@ -31,5 +31,11 @@ namespace Smart_Shop
         {
             Application.Current.Shutdown();
         }
+
+        private void OnMinimizeClick(object sender, RoutedEventArgs e)
+        {
+            //TODO: add the minimize animation.
+            this.WindowState = WindowState.Minimized;
+        }
     }
 }

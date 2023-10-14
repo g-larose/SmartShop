@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using Smart_Shop.Data;
+using Smart_Shop.Interfaces;
 using Smart_Shop.Models;
 using System;
 using System.Collections.Generic;
@@ -9,21 +12,26 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Smart_Shop.Data
+namespace Smart_Shop.Factories
 {
-    public class AppDbContext : DbContext
+    public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
     {
-       
-        public DbSet<Customer> Customers { get; set; }
-        public AppDbContext(DbContextOptions options) : base(options)
+
+        public AppDbContextFactory()
         {
+           
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+        public AppDbContext CreateDbContext(string[] args = null)
         {
-            base.OnConfiguring(optionsBuilder);
             var json = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "Settings", "appsettings.json"));
             var conStr = JsonSerializer.Deserialize<ConfigJson>(json);
-            optionsBuilder.UseNpgsql(conStr!.ConnectionString);
+            var options = new DbContextOptionsBuilder<AppDbContext>();
+            options.UseNpgsql(conStr!.ConnectionString);
+
+            return new AppDbContext(options.Options);
+            
         }
+
     }
 }

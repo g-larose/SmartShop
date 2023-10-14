@@ -9,7 +9,7 @@ namespace Smart_Shop.Models
 {
     public class Customer
     {
-        public int Id { get; set; }
+        public int CustomerId { get; set; }
         public Guid Identifier { get; set; }
         public string CompanyName { get; set; } = string.Empty;
         public string ContactName { get; set; } = string.Empty;
@@ -20,7 +20,6 @@ namespace Smart_Shop.Models
         public string Address { get; set; } = string.Empty;
         public string State { get; set; } = string.Empty;
         public string Zipcode { get; set; } = string.Empty;
-        public int InvoiceId { get; set; }
         public virtual ICollection<Invoice>? Invoices { get; set; }
     }
 }

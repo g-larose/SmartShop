@@ -7,10 +7,48 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      FontSize="30"
-                      Foreground="{StaticResource PrimaryColorBrush}"
-                      Text="Smart Shop 2023" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="1"
+                    Grid.Row="1">
+            <Border CornerRadius="8"
+                    Background="{StaticResource PrimaryColorBrush}"
+                    Height="100"
+                    Width="200"
+                    VerticalAlignment="Top">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="4"
+                                      ShadowDepth="4"
+                                      Direction="270"
+                                      Color="Black"
+                                      Opacity=".6" />
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="14" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0"
+                            CornerRadius="8 8 0 0"
+                            Background="Green">
+                        <TextBlock Text="Recent Activity"
+                                   FontSize="10"
+                                   HorizontalAlignment="Center"/>
+                    </Border>
+                </Grid>
+                
+            </Border>
+        </StackPanel>
     </Grid>
 </UserControl>

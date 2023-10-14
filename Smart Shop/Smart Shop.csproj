@@ -33,6 +33,7 @@
     <Folder Include="Data\Json\" />
     <Folder Include="Data\Xml\" />
     <Folder Include="Converters\" />
+    <Folder Include="Migrations\" />
     <Folder Include="Theme\Light\" />
   </ItemGroup>
 

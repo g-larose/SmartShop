@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.EntityFrameworkCore;
 using Smart_Shop.Commands;
+using Smart_Shop.Data;
+using Smart_Shop.Factories;
 using Smart_Shop.Interfaces;
 
 namespace Smart_Shop.ViewModels
@@ -19,6 +22,7 @@ namespace Smart_Shop.ViewModels
         private string? _buildVer;
 
         private INavigator _navigator;
+        private readonly AppDbContextFactory _dbContext;
 
         public string BuildVer
         {
@@ -30,13 +34,14 @@ namespace Smart_Shop.ViewModels
         public ICommand NavigateHomeCommand { get; }
         public ICommand NavigateSettingsCommand { get; }
 
-        public AppViewModel(IUtility utilityService, INavigator navigator)
+        public AppViewModel(IUtility utilityService, INavigator navigator, AppDbContextFactory dbContext)
         {
-            _utilityService = utilityService;
+            _dbContext = dbContext;
             _navigator = navigator;
+            _utilityService = utilityService;
             _navigator.CurrentViewModelChanged += OnCurrentViewModelChanged;
             BuildVer = _utilityService.GenerateBuildVersion();
-            NavigateHomeCommand = new NavigateCommand<HomeViewViewModel>(_navigator, () => new HomeViewViewModel());
+            NavigateHomeCommand = new NavigateCommand<HomeViewViewModel>(_navigator, () => new HomeViewViewModel(_navigator, _dbContext));
             NavigateSettingsCommand = new NavigateCommand<SettingsViewModel>(_navigator, () => new SettingsViewModel());
         }
 

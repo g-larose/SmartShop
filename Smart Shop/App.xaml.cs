@@ -21,6 +21,7 @@ public partial class App : Application
     {
         _host = Host.CreateDefaultBuilder().ConfigureServices(services =>
         {
+            services.AddSingleton<AppDbContextFactory>();
             services.AddSingleton<AppViewModel>();
             services.AddSingleton<SettingsViewModel>();
             services.AddSingleton<MainWindow>(s => new MainWindow()
@@ -29,9 +30,9 @@ public partial class App : Application
             });
             services.AddSingleton<INavigator, Navigator>();
             services.AddSingleton<IUtility, UtilityService>();
-            services.AddSingleton<IDbContextFactory<AppDbContext>, DbContextFactory>();
             services.AddSingleton<IDataService, DataService>();
             services.AddSingleton<WeakReferenceMessenger>();
+            
 
         }).Build();
     }
