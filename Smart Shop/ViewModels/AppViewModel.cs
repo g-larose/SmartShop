@@ -33,6 +33,7 @@ namespace Smart_Shop.ViewModels
         //Navigation Commands
         public ICommand NavigateHomeCommand { get; }
         public ICommand NavigateSettingsCommand { get; }
+        public ICommand NavigateNewCustomerCommand { get; }
 
         public AppViewModel(IUtility utilityService, INavigator navigator, AppDbContextFactory dbContext)
         {
@@ -43,6 +44,7 @@ namespace Smart_Shop.ViewModels
             BuildVer = _utilityService.GenerateBuildVersion();
             NavigateHomeCommand = new NavigateCommand<HomeViewViewModel>(_navigator, () => new HomeViewViewModel(_navigator, _dbContext));
             NavigateSettingsCommand = new NavigateCommand<SettingsViewModel>(_navigator, () => new SettingsViewModel());
+            NavigateNewCustomerCommand = new NavigateCommand<AddCustomerViewModel>(_navigator, () => new AddCustomerViewModel(_navigator, _dbContext));
         }
 
         private void OnCurrentViewModelChanged()

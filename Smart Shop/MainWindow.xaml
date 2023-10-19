@@ -166,7 +166,8 @@
                                 Width="70"
                                 Height="60"
                                 Background="Transparent"
-                                BorderBrush="Transparent">
+                                BorderBrush="Transparent"
+                                Command="{Binding NavigateNewCustomerCommand}">
                                 <md:PackIcon
                                     Width="40"
                                     Height="40"
@@ -215,10 +216,14 @@
                     Grid.Column="1"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Content="{Binding CurrentViewModel}">
+                    Content="{Binding CurrentViewModel}"
+                    Margin="40">
                     <ContentControl.Resources>
                         <DataTemplate DataType="{x:Type vm:HomeViewViewModel}">
                             <v:HomeView />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vm:AddCustomerViewModel}">
+                            <v:AddCustomerView />
                         </DataTemplate>
                     </ContentControl.Resources>
                 </ContentControl>
