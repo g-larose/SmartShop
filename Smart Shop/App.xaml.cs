@@ -30,9 +30,7 @@ public partial class App : Application
             });
             services.AddSingleton<INavigator, Navigator>();
             services.AddSingleton<IUtility, UtilityService>();
-            services.AddSingleton<IDataService, DataService>();
-            services.AddSingleton<WeakReferenceMessenger>();
-            
+            services.AddSingleton<IDataService, DataService>();           
 
         }).Build();
     }

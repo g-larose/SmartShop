@@ -10,7 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+    <None Remove="Assets\Icons\man-profile.png" />
+    <None Remove="Assets\Icons\woman-profile.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.8.0" />
     <PackageReference Include="MaterialDesignColors" Version="2.1.4" />
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
@@ -33,9 +37,17 @@
   <ItemGroup>
     <Folder Include="Data\Json\" />
     <Folder Include="Data\Xml\" />
-    <Folder Include="Converters\" />
     <Folder Include="Migrations\" />
     <Folder Include="Theme\Light\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Icons\man-profile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\woman-profile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

@@ -23,8 +23,8 @@ namespace Smart_Shop.Validation
 
             RuleFor(c => c.Email)
                 .NotNull()
-                .WithMessage("Please enter a valid email address.")
-                .EmailAddress();
+                .EmailAddress()
+                .WithMessage("Please enter a valid email address.");
 
             RuleFor(c => c.Phone)
                 .NotNull()
