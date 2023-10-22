@@ -1,6 +1,7 @@
 ﻿using Smart_Shop.Commands;
 using Smart_Shop.Factories;
 using Smart_Shop.Interfaces;
+using Smart_Shop.Models;
 using Smart_Shop.Validation;
 using System.Collections;
 using System.Collections.ObjectModel;
@@ -12,6 +13,7 @@ namespace Smart_Shop.ViewModels
 {
     public class AddCustomerViewModel : ViewModelBase, IDataErrorInfo, INotifyDataErrorInfo
     {
+        //TODO: finish Add New Custopmer View
         private readonly INavigator _navigator;
         private readonly AppDbContextFactory _dbContext;
         private readonly CustomerValidator _custValidator = new CustomerValidator();
@@ -143,7 +145,31 @@ namespace Smart_Shop.ViewModels
                 Phone is not null || Email is not null || Address is not null)
             {
                 //we save the customer to the db
+                var cust = new Customer()
+                {
+                    Identifier = Guid.NewGuid(),
+                    CompanyName = CompanyName,
+                    ContactName = ContactName,
+                    Email = Email,
+                    Phone = Phone,
+                    Address = Address
+
+                };
+
+                using var db = _dbContext.CreateDbContext();
+                db.Customers.Add(cust);
+                db.SaveChanges();
+                ClearInputs();
             }
+        }
+
+        private void ClearInputs()
+        {
+            CompanyName = "";
+            ContactName = "";
+            Email = "";
+            Phone = "";
+            Address = "";
         }
 
         private void Cancel()

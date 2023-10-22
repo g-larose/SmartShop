@@ -90,12 +90,12 @@
                             md:HintAssist.Hint="Company Name"
                             Foreground="{StaticResource PrimaryColorBrush}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                            Text="{Binding CompanyName, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, NotifyOnValidationError=True}">
+                            Text="{Binding CompanyName, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}">
                             <Validation.ErrorTemplate>
                                 <ControlTemplate>
                                     <StackPanel Orientation="Vertical">
                                         <AdornedElementPlaceholder x:Name="textBox" />
-                                        <TextBlock Foreground="{StaticResource PrimaryHueMidBrush}" Text="{Binding [0].ErrorContent}" />
+                                        <TextBlock Foreground="{StaticResource ValidationErrorBrush}" Text="{Binding [0].ErrorContent}" />
                                     </StackPanel>
                                 </ControlTemplate>
                             </Validation.ErrorTemplate>
@@ -123,7 +123,7 @@
                             <ControlTemplate>
                                 <StackPanel Orientation="Vertical">
                                     <AdornedElementPlaceholder x:Name="textBox" />
-                                    <TextBlock Foreground="{StaticResource PrimaryHueMidBrush}" Text="{Binding [0].ErrorContent}" />
+                                    <TextBlock Foreground="{StaticResource ValidationErrorBrush}" Text="{Binding [0].ErrorContent}" />
                                 </StackPanel>
                             </ControlTemplate>
                         </Validation.ErrorTemplate>
@@ -146,7 +146,7 @@
                             <ControlTemplate>
                                 <StackPanel Orientation="Vertical">
                                     <AdornedElementPlaceholder x:Name="textBox" />
-                                    <TextBlock Foreground="{StaticResource PrimaryHueMidBrush}" Text="{Binding [0].ErrorContent}" />
+                                    <TextBlock Foreground="{StaticResource ValidationErrorBrush}" Text="{Binding [0].ErrorContent}" />
                                 </StackPanel>
                             </ControlTemplate>
                         </Validation.ErrorTemplate>
@@ -169,7 +169,7 @@
                             <ControlTemplate>
                                 <StackPanel Orientation="Vertical">
                                     <AdornedElementPlaceholder x:Name="textBox" />
-                                    <TextBlock Foreground="{StaticResource PrimaryHueMidBrush}" Text="{Binding [0].ErrorContent}" />
+                                    <TextBlock Foreground="{StaticResource ValidationErrorBrush}" Text="{Binding [0].ErrorContent}" />
                                 </StackPanel>
                             </ControlTemplate>
                         </Validation.ErrorTemplate>
@@ -192,7 +192,7 @@
                             <ControlTemplate>
                                 <StackPanel Orientation="Vertical">
                                     <AdornedElementPlaceholder x:Name="textBox" />
-                                    <TextBlock Foreground="{StaticResource PrimaryHueMidBrush}" 
+                                    <TextBlock Foreground="{StaticResource ValidationErrorBrush}" 
                                                Text="{Binding [0].ErrorContent}" />
                                 </StackPanel>
                             </ControlTemplate>
