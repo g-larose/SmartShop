@@ -62,37 +62,49 @@
                         <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Column="2"
-                                Grid.Row="0"
-                                Orientation="Horizontal"
-                                Margin="54 0 0 0">
-                        <Label Content="Invoice #"
-                               Foreground="{StaticResource AccentColorBrush}"
-                               FontSize="16" 
-                               VerticalAlignment="Center"
-                               />
-                        <TextBlock 
-                               Text="{Binding InvoiceNumber, FallbackValue=000-000-000}"
-                               Foreground="{StaticResource AccentColorBrush}"
-                               FontSize="16" 
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Center"
-                               Margin="10 0 10 0"
-                            Opacity=".5"/>
+                    <StackPanel
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Margin="54,0,0,0"
+                        Orientation="Horizontal">
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Invoice #"
+                            FontSize="16"
+                            Foreground="{StaticResource AccentColorBrush}" />
+                        <TextBlock
+                            Margin="10,0,10,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            FontSize="16"
+                            Foreground="{StaticResource AccentColorBrush}"
+                            Opacity=".5"
+                            Text="{Binding InvoiceNumber, FallbackValue=000-000-000}" />
                     </StackPanel>
-                   
-                    <ComboBox
-                        Grid.Column="0"
+
+                    <StackPanel
                         Grid.Row="1"
-                        Width="200"
-                        md:HintAssist.Foreground="{StaticResource AccentColorBrush}"
-                        md:HintAssist.Hint="Customers"
-                        Foreground="{StaticResource SecondaryAccentColorBrush}"
-                        Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                        Grid.Column="0"
+                        Orientation="Horizontal"
+                        Margin="20 0">
+                        <ComboBox
+                            Width="200"
+                            md:HintAssist.Foreground="{StaticResource AccentColorBrush}"
+                            md:HintAssist.Hint="Customers"
+                            Foreground="{StaticResource SecondaryAccentColorBrush}"
+                            Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                        <Button Content="Add New"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom"
+                                Padding="0"
+                                Margin="10 0"/>
+                    </StackPanel>
+
 
                     <DatePicker
-                        Grid.Column="1"
                         Grid.Row="1"
+                        Grid.Column="1"
                         Width="200"
                         VerticalAlignment="Center"
                         md:HintAssist.Foreground="{StaticResource SecondaryAccentColorBrush}"
@@ -101,8 +113,8 @@
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
 
                     <DatePicker
-                        Grid.Column="2"
                         Grid.Row="1"
+                        Grid.Column="2"
                         Width="200"
                         VerticalAlignment="Center"
                         md:HintAssist.Foreground="{StaticResource SecondaryAccentColorBrush}"
