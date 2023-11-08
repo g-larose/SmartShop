@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Smart_Shop.Interfaces;
+﻿using Smart_Shop.Interfaces;
 using Smart_Shop.ViewModels;
 using System;
 using System.Collections.Generic;

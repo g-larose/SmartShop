@@ -149,17 +149,12 @@
                             </Grid.RowDefinitions>
                             <Button
                                 Grid.Row="0"
-                                Width="70"
-                                Height="60"
+                                Height="70"
                                 Background="Transparent"
                                 BorderBrush="Transparent"
-                                Command="{Binding NavigateHomeCommand}">
-                                <md:PackIcon
-                                    Width="40"
-                                    Height="40"
-                                    HorizontalAlignment="Center"
-                                    Foreground="{StaticResource PrimaryColorBrush}"
-                                    Kind="Home" />
+                                Command="{Binding NavigateHomeCommand}"
+                                Content="{md:PackIcon Kind=Home,Size=40}">
+                               
                             </Button>
                             <Button
                                 Grid.Row="1"
@@ -167,26 +162,18 @@
                                 Height="60"
                                 Background="Transparent"
                                 BorderBrush="Transparent"
-                                Command="{Binding NavigateNewCustomerCommand}">
-                                <md:PackIcon
-                                    Width="40"
-                                    Height="40"
-                                    HorizontalAlignment="Center"
-                                    Foreground="{StaticResource PrimaryColorBrush}"
-                                    Kind="ListStatus" />
+                                Command="{Binding NavigateNewCustomerCommand}"
+                                Content="{md:PackIcon Kind=ListStatus, Size=40}">
+                               
                             </Button>
                             <Button
                                 Grid.Row="2"
                                 Width="70"
                                 Height="60"
                                 Background="Transparent"
-                                BorderBrush="Transparent">
-                                <md:PackIcon
-                                    Width="40"
-                                    Height="40"
-                                    HorizontalAlignment="Center"
-                                    Foreground="{StaticResource PrimaryColorBrush}"
-                                    Kind="PersonHeart" />
+                                BorderBrush="Transparent"
+                                Content="{md:PackIcon Kind=PersonHeart, Size=40}">
+                                
                             </Button>
                             <Button
                                 Grid.Row="3"
@@ -194,13 +181,9 @@
                                 Height="60"
                                 Background="Transparent"
                                 BorderBrush="Transparent"
-                                Command="{Binding NavigateNewInvoiceCommand}">
-                                <md:PackIcon
-                                    Width="40"
-                                    Height="40"
-                                    HorizontalAlignment="Center"
-                                    Foreground="{StaticResource PrimaryColorBrush}"
-                                    Kind="FileDocumentEdit" />
+                                Command="{Binding NavigateNewInvoiceCommand}"
+                                Content="{md:PackIcon Kind=PersonDetails, Size=40}">
+                                
                             </Button>
                             <Button
                                 Grid.Row="6"
@@ -209,13 +192,9 @@
                                 VerticalAlignment="Bottom"
                                 Background="Transparent"
                                 BorderBrush="Transparent"
-                                Command="{Binding NavigateSettingsCommand}">
-                                <md:PackIcon
-                                    Width="40"
-                                    Height="40"
-                                    HorizontalAlignment="Center"
-                                    Foreground="{StaticResource PrimaryColorBrush}"
-                                    Kind="GearOutline" />
+                                Command="{Binding NavigateSettingsCommand}"
+                                Content="{md:PackIcon Kind=GearOutline,Size=40}">
+                                
                             </Button>
                         </Grid>
 

@@ -85,20 +85,21 @@
                     <StackPanel
                         Grid.Row="1"
                         Grid.Column="0"
-                        Orientation="Horizontal"
-                        Margin="20 0">
+                        Margin="20,0"
+                        Orientation="Horizontal">
                         <ComboBox
                             Width="200"
                             md:HintAssist.Foreground="{StaticResource AccentColorBrush}"
                             md:HintAssist.Hint="Customers"
                             Foreground="{StaticResource SecondaryAccentColorBrush}"
                             Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
-                        <Button Content="Add New"
-                                Style="{StaticResource MaterialDesignFlatButton}"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Bottom"
-                                Padding="0"
-                                Margin="10 0"/>
+                        <Button
+                            Margin="10,0"
+                            Padding="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            Content="Add New"
+                            Style="{StaticResource MaterialDesignFlatButton}" />
                     </StackPanel>
 
 
@@ -122,10 +123,15 @@
                         Foreground="{StaticResource AccentToSecondaryAccentGradientBrush}"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
 
-
-                    <!--#endregion-->
-
                 </Grid>
+                <!--#endregion-->
+
+                <!--#region ROW 2 CUSTOMER INFO-->
+                <StackPanel
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Orientation="Vertical" />
+                <!--#endregion-->
 
                 <!--#endregion-->
 

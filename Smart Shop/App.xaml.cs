@@ -1,5 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Smart_Shop.Data;
@@ -15,8 +15,9 @@ using System.Windows;
 namespace Smart_Shop;
 public partial class App : Application
 {
-    private IHost _host;
+   private IHost _host;
 
+   
     public App()
     {
         _host = Host.CreateDefaultBuilder().ConfigureServices(services =>
@@ -30,16 +31,17 @@ public partial class App : Application
             });
             services.AddSingleton<INavigator, Navigator>();
             services.AddSingleton<IUtility, UtilityService>();
-            services.AddSingleton<IDataService, DataService>();           
-
+            services.AddSingleton<IDataService, DataService>();
         }).Build();
+        
     }
+
 
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
         _host.Start();
-        MainWindow = _host.Services.GetRequiredService<MainWindow>();
-        MainWindow.Show();
+        MainWindow mainWindow = _host.Services.GetRequiredService<MainWindow>();
+        mainWindow.Show();
     }
 }
