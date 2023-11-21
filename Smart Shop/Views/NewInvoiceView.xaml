@@ -18,7 +18,7 @@
             CornerRadius="12">
             <Border.Effect>
                 <DropShadowEffect
-                    BlurRadius="4"
+                    BlurRadius="2"
                     Direction="270"
                     Opacity=".6"
                     ShadowDepth="4"
@@ -34,8 +34,7 @@
                     <RowDefinition Height="20" />
                     <RowDefinition />
                     <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
+                    <RowDefinition Height="200"/>
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition Height="4" />
@@ -45,8 +44,7 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     Grid.ColumnSpan="3"
-                    Background="{StaticResource AccentToSecondaryAccentGradientBrush}"
-                    CornerRadius="12 12 0 0" />
+                    Background="{StaticResource AccentToSecondaryAccentGradientBrush}" />
                 <!--#endregion-->
 
                 <!--#region CONTENT-->
@@ -79,7 +77,7 @@
                             FontSize="16"
                             Foreground="{StaticResource AccentColorBrush}"
                             Opacity=".5"
-                            Text="{Binding InvoiceNumber, FallbackValue=000-000-000}" />
+                            Text="{Binding InvoiceNum, FallbackValue=000-000-000}" />
                     </StackPanel>
 
                     <StackPanel
@@ -91,7 +89,10 @@
                             Width="200"
                             md:HintAssist.Foreground="{StaticResource AccentColorBrush}"
                             md:HintAssist.Hint="Customers"
+                            DisplayMemberPath="CompanyName"
                             Foreground="{StaticResource SecondaryAccentColorBrush}"
+                            ItemsSource="{Binding Customers, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                            SelectedItem="{Binding SelectedCustomer}"
                             Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
                         <Button
                             Margin="10,0"
@@ -106,7 +107,7 @@
                     <DatePicker
                         Grid.Row="1"
                         Grid.Column="1"
-                        Width="200"
+                        Width="270"
                         VerticalAlignment="Center"
                         md:HintAssist.Foreground="{StaticResource SecondaryAccentColorBrush}"
                         md:HintAssist.Hint="Received Date"
@@ -116,7 +117,7 @@
                     <DatePicker
                         Grid.Row="1"
                         Grid.Column="2"
-                        Width="200"
+                        Width="270"
                         VerticalAlignment="Center"
                         md:HintAssist.Foreground="{StaticResource SecondaryAccentColorBrush}"
                         md:HintAssist.Hint="Due Date"
@@ -127,11 +128,139 @@
                 <!--#endregion-->
 
                 <!--#region ROW 2 CUSTOMER INFO-->
-                <StackPanel
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Orientation="Vertical" />
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <StackPanel
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Orientation="Vertical">
+                        <TextBlock
+                            Margin="20 0"
+                            FontSize="12"
+                            Foreground="{StaticResource PrimaryHueDarkBrush}"
+                            Text="Identifier" />
+                        <TextBlock
+                            MaxWidth="100"
+                            Margin="20,-3"
+                            HorizontalAlignment="Left"
+                            FontSize="16"
+                            Foreground="{StaticResource AccentColorBrush}"
+                            Text="{Binding SelectedCustomer.Identifier}"
+                            TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                    <StackPanel
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Orientation="Vertical">
+                        <TextBlock
+                            Margin="20,0"
+                            FontSize="12"
+                            Foreground="{StaticResource PrimaryHueDarkBrush}"
+                            Text="Company Name" />
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="20,-3"
+                            FontSize="16"
+                            Foreground="{StaticResource AccentColorBrush}"
+                            Text="{Binding SelectedCustomer.CompanyName}" />
+                    </StackPanel>
+                    <StackPanel
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Orientation="Vertical">
+                        <TextBlock
+                            Margin="20,0"
+                            FontSize="12"
+                            Foreground="{StaticResource PrimaryHueDarkBrush}"
+                            Text="Contact" />
+                        <TextBlock
+                            Margin="20,-3"
+                            FontSize="16"
+                            Foreground="{StaticResource AccentColorBrush}"
+                            Text="{Binding SelectedCustomer.ContactName}" />
+                    </StackPanel>
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Orientation="Vertical">
+                        <TextBlock
+                            Margin="20,0"
+                            FontSize="12"
+                            Foreground="{StaticResource PrimaryHueDarkBrush}"
+                            Text="Email" />
+                        <TextBlock
+                            Margin="20,-3"
+                            FontSize="16"
+                            Foreground="{StaticResource AccentColorBrush}"
+                            Text="{Binding SelectedCustomer.Email}" />
+                    </StackPanel>
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Orientation="Vertical">
+                        <TextBlock
+                            Margin="20,0"
+                            FontSize="12"
+                            Foreground="{StaticResource PrimaryHueDarkBrush}"
+                            Text="Phone" />
+                        <TextBlock
+                            Margin="20,-3"
+                            FontSize="16"
+                            Foreground="{StaticResource AccentColorBrush}"
+                            Text="{Binding SelectedCustomer.Phone}" />
+                    </StackPanel>
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Orientation="Vertical">
+                        <TextBlock
+                            Margin="20,0"
+                            FontSize="12"
+                            Foreground="{StaticResource PrimaryHueDarkBrush}"
+                            Text="Address" />
+                        <TextBlock
+                            Margin="20,-3"
+                            FontSize="16"
+                            Foreground="{StaticResource AccentColorBrush}"
+                            Text="{Binding SelectedCustomer.Address}" />
+                    </StackPanel>
+
+                </Grid>
                 <!--#endregion-->
+                
+                <!-- #region ROW 3 INVOICE INFO-->
+                <Grid Grid.Column="1"
+                      Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <!--#region  ROW 1-->
+                    <TextBox Grid.Column="0"
+                             Grid.Row="0"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             md:HintAssist.Foreground="{StaticResource PrimaryHueDarkBrush}"
+                             md:HintAssist.Hint="Invoice Number" 
+                             Foreground="{StaticResource PrimaryColorBrush}"
+                             Margin="20 5"/>
+                    <!--#endregion--> 
+                </Grid>
+                <!-- #endregion -->
 
                 <!--#endregion-->
 

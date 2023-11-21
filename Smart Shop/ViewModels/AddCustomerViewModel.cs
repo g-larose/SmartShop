@@ -1,4 +1,6 @@
-﻿using Smart_Shop.Commands;
+﻿using Microsoft.EntityFrameworkCore;
+using Smart_Shop.Commands;
+using Smart_Shop.Data;
 using Smart_Shop.Factories;
 using Smart_Shop.Interfaces;
 using Smart_Shop.Models;
@@ -23,16 +25,15 @@ namespace Smart_Shop.ViewModels
         public ICommand CancelCommand { get; }
         public ICommand SaveCommand { get; }
 
-
+        Dictionary<string, List<string>> Errors = new();
+        public bool HasErrors => Errors.Count > 0;
         #region FIELDS
 
-        private string _companyName;
-        private string _contactName;
-        private string _email;
-        private string _phone;
-        private string _address;
-        private bool _hasErrors;
-        private ObservableCollection<string> _errors;
+        private string? _companyName;
+        private string? _contactName;
+        private string? _email;
+        private string? _phone;
+        private string? _address;
 
         public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
@@ -40,51 +41,39 @@ namespace Smart_Shop.ViewModels
         #endregion
 
         #region PROPERTIES
-
-        public ObservableCollection<string> Errors
-        {
-            get => _errors;
-            set => OnPropertyChanged(ref _errors, value);
-        }
         
-        public string CompanyName
+        public string? CompanyName
         {
             get => _companyName;
-            set => OnPropertyChanged(ref _companyName, value);
+            set => OnPropertyChanged(ref _companyName!, value);
         }
 
        
-        public string ContactName
+        public string? ContactName
         {
             get => _contactName;
-            set => OnPropertyChanged(ref _contactName, value);
+            set => OnPropertyChanged(ref _contactName!, value);
         }
 
         
-        public string Email
+        public string? Email
         {
             get => _email;
-            set => OnPropertyChanged(ref _email, value);
+            set => OnPropertyChanged(ref _email!, value);
         }
 
         
-        public string Phone
+        public string? Phone
         {
             get => _phone;
-            set => OnPropertyChanged(ref _phone, value);
+            set => OnPropertyChanged(ref _phone!, value);
         }
 
         
-        public string Address
+        public string? Address
         {
             get => _address;
-            set => OnPropertyChanged(ref _address, value);
-        }
-
-        public bool HasErrors
-        {
-            get => _hasErrors;
-            set => OnPropertyChanged(ref _hasErrors, value);
+            set => OnPropertyChanged(ref _address!, value);
         }
 
         #endregion
@@ -116,7 +105,6 @@ namespace Smart_Shop.ViewModels
                     {
 
                         var errors = string.Join(Environment.NewLine, results.Errors.Select(x => x.ErrorMessage).ToArray());
-
                         return errors;
                     }
                 }
@@ -141,25 +129,32 @@ namespace Smart_Shop.ViewModels
 
         private void Save()
         {
+            using var db = _dbContext.CreateDbContext();
             if (CompanyName is not null || ContactName is not null ||
                 Phone is not null || Email is not null || Address is not null)
             {
-                //we save the customer to the db
-                var cust = new Customer()
+                // check to see if the customer already exists in the DB/
+                var c = db.Customers.Select(x => x.CompanyName == CompanyName).FirstOrDefault();
+
+                if (c is { })
                 {
-                    Identifier = Guid.NewGuid(),
-                    CompanyName = CompanyName,
-                    ContactName = ContactName,
-                    Email = Email,
-                    Phone = Phone,
-                    Address = Address
+                    //we save the customer to the db
+                    var cust = new Customer()
+                    {
+                        Identifier = Guid.NewGuid(),
+                        CompanyName = CompanyName,
+                        ContactName = ContactName,
+                        Email = Email,
+                        Phone = Phone,
+                        Address = Address
 
-                };
+                    };
 
-                using var db = _dbContext.CreateDbContext();
-                db.Customers.Add(cust);
-                db.SaveChanges();
-                ClearInputs();
+                    db.Customers.Add(cust);
+                    db.SaveChanges();
+                    ClearInputs();
+                }
+               
             }
         }
 
@@ -192,7 +187,10 @@ namespace Smart_Shop.ViewModels
 
         public IEnumerable GetErrors(string? propertyName)
         {
-            throw new NotImplementedException();
+            if (Errors.ContainsKey(propertyName))
+                return Errors[propertyName];
+            else
+                return Enumerable.Empty<string>();
         }
     }
 }
