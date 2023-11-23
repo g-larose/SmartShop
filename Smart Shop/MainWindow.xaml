@@ -36,7 +36,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <!--  Left Navigation Cell  -->
-                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="120" />
                     <!--  Main Content Cell  -->
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
@@ -139,63 +139,86 @@
                         Opacity=".4">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="70" />
-                                <RowDefinition Height="70" />
-                                <RowDefinition Height="70" />
-                                <RowDefinition Height="70" />
-                                <RowDefinition Height="70" />
-                                <RowDefinition Height="70" />
+                                <RowDefinition Height="90" />
+                                <RowDefinition Height="90" />
+                                <RowDefinition Height="90" />
+                                <RowDefinition Height="90" />
+                                <RowDefinition Height="90" />
+                                <RowDefinition Height="90" />
                                 <RowDefinition Height="100" />
                             </Grid.RowDefinitions>
                             <Button
+                                x:Name="home_btn"
                                 Grid.Row="0"
-                                Height="70"
-                                Background="Transparent"
                                 BorderBrush="Transparent"
-                                Command="{Binding NavigateHomeCommand}"
-                                Content="{md:PackIcon Kind=Home,Size=40}">
-                               
+                                Style="{StaticResource HoverBtnStyle}">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Assets/Icons/img_home.png" Stretch="Uniform" />
+                                </Button.Background>
+                                <Popup
+                                    Width="100"
+                                    HorizontalOffset="10"
+                                    IsOpen="{Binding ElementName=home_btn, Path=IsMouseOver, Mode=OneWay}"
+                                    PlacementTarget="{Binding ElementName=home_btn}"
+                                    Style="{StaticResource PopupStyle}"
+                                    VerticalOffset="10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="24"/>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Style="{StaticResource border}"
+                                                Grid.Column="1">
+                                            <TextBlock Style="{StaticResource PopupText}" Text="Home" />
+                                        </Border>
+                                        <Path Style="{StaticResource ArrowPath}"
+                                              RenderTransformOrigin="0.5, 0.5"
+                                              Grid.Column="0"
+                                              Margin="0 8 0 0">
+                                            <Path.RenderTransform>
+                                                <RotateTransform Angle="90" />
+                                            </Path.RenderTransform>
+                                        </Path>
+                                    </Grid>
+
+                                </Popup>
                             </Button>
                             <Button
                                 Grid.Row="1"
                                 Width="70"
-                                Height="60"
+                                Height="70"
                                 Background="Transparent"
                                 BorderBrush="Transparent"
                                 Command="{Binding NavigateNewCustomerCommand}"
-                                Content="{md:PackIcon Kind=ListStatus, Size=40}">
-                               
-                            </Button>
+                                Content="{md:PackIcon Kind=ListStatus,
+                                                      Size=40}" />
                             <Button
                                 Grid.Row="2"
                                 Width="70"
-                                Height="60"
+                                Height="70"
                                 Background="Transparent"
                                 BorderBrush="Transparent"
-                                Content="{md:PackIcon Kind=PersonHeart, Size=40}">
-                                
-                            </Button>
+                                Content="{md:PackIcon Kind=PersonHeart,
+                                                      Size=40}" />
                             <Button
                                 Grid.Row="3"
                                 Width="70"
-                                Height="60"
+                                Height="70"
                                 Background="Transparent"
                                 BorderBrush="Transparent"
                                 Command="{Binding NavigateNewInvoiceCommand}"
-                                Content="{md:PackIcon Kind=PersonDetails, Size=40}">
-                                
-                            </Button>
+                                Content="{md:PackIcon Kind=PersonDetails,
+                                                      Size=40}" />
                             <Button
                                 Grid.Row="6"
                                 Width="70"
-                                Height="60"
+                                Height="70"
                                 VerticalAlignment="Bottom"
                                 Background="Transparent"
                                 BorderBrush="Transparent"
                                 Command="{Binding NavigateSettingsCommand}"
-                                Content="{md:PackIcon Kind=GearOutline,Size=40}">
-                                
-                            </Button>
+                                Content="{md:PackIcon Kind=GearOutline,
+                                                      Size=40}" />
                         </Grid>
 
                     </Border>

@@ -34,7 +34,7 @@
                     <RowDefinition Height="20" />
                     <RowDefinition />
                     <RowDefinition />
-                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="150"/>
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition Height="4" />
@@ -44,7 +44,22 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     Grid.ColumnSpan="3"
-                    Background="{StaticResource AccentToSecondaryAccentGradientBrush}" />
+                    Background="{StaticResource AccentToSecondaryAccentGradientBrush}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"
+                                   Text="New Invoice"
+                                   Foreground="{StaticResource PrimaryColorBrush}"
+                                   FontSize="12"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="40 0" />
+                    </Grid>
+                </Border>
                 <!--#endregion-->
 
                 <!--#region CONTENT-->
@@ -95,7 +110,7 @@
                             SelectedItem="{Binding SelectedCustomer}"
                             Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
                         <Button
-                            Margin="10,0"
+                            Margin="10,10"
                             Padding="0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Bottom"
@@ -257,7 +272,10 @@
                              md:HintAssist.Foreground="{StaticResource PrimaryHueDarkBrush}"
                              md:HintAssist.Hint="Invoice Number" 
                              Foreground="{StaticResource PrimaryColorBrush}"
-                             Margin="20 5"/>
+                             Margin="20 5"
+                             Width="200"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Top"/>
                     <!--#endregion--> 
                 </Grid>
                 <!-- #endregion -->

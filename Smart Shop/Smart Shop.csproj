@@ -11,7 +11,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Icons\img_chrome.png" />
+    <None Remove="Assets\Icons\img_downloads.png" />
+    <None Remove="Assets\Icons\img_home.png" />
+    <None Remove="Assets\Icons\img_mail.png" />
+    <None Remove="Assets\Icons\img_photoshop.png" />
+    <None Remove="Assets\Icons\img_settings.png" />
+    <None Remove="Assets\Icons\img_trash.png" />
+    <None Remove="Assets\Icons\img_user.png" />
+    <None Remove="Assets\Icons\img_vs.png" />
+    <None Remove="Assets\Icons\img_word.png" />
+    <None Remove="Assets\Icons\img_youtube.png" />
     <None Remove="Assets\Icons\man-profile.png" />
+    <None Remove="Assets\Icons\shutdown_def.png" />
+    <None Remove="Assets\Icons\shutdown_mo.png" />
     <None Remove="Assets\Icons\woman-profile.png" />
   </ItemGroup>
 
@@ -43,7 +56,46 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Icons\img_chrome.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\img_downloads.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\img_home.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\img_mail.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\img_photoshop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\img_settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\img_trash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\img_user.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\img_vs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\img_word.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\img_youtube.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Icons\man-profile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\shutdown_def.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\shutdown_mo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Icons\woman-profile.png">
