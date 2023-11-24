@@ -28,10 +28,13 @@ namespace Smart_Shop.ViewModels
             set => OnPropertyChanged(ref _buildVer, value);
         }
 
+        public string CurrentViewModelTag { get; set; }
+        public bool IsBackEnabled => CurrentViewModelTag != "";
+
         //Navigation Commands
         public ICommand NavigateHomeCommand { get; }
         public ICommand NavigateSettingsCommand { get; }
-        public ICommand NavigateNewCustomerCommand { get; }
+        public ICommand NavigateCustomersCommand { get; }
         public ICommand NavigateNewInvoiceCommand { get; }
 
         public AppViewModel(IUtility utilityService, INavigator navigator, AppDbContextFactory dbContext)
@@ -43,13 +46,14 @@ namespace Smart_Shop.ViewModels
             BuildVer = _utilityService.GenerateBuildVersion();
             NavigateHomeCommand = new NavigateCommand<HomeViewViewModel>(_navigator, () => new HomeViewViewModel(_navigator, _dbContext));
             NavigateSettingsCommand = new NavigateCommand<SettingsViewModel>(_navigator, () => new SettingsViewModel());
-            NavigateNewCustomerCommand = new NavigateCommand<AddCustomerViewModel>(_navigator, () => new AddCustomerViewModel(_navigator, _dbContext));
+            NavigateCustomersCommand = new NavigateCommand<CustomersViewModel>(_navigator, () => new CustomersViewModel(_navigator, _dbContext));
             NavigateNewInvoiceCommand = new NavigateCommand<NewInvoiceViewModel>(_navigator, () => new NewInvoiceViewModel(_navigator, _dbContext));
         }
 
         private void OnCurrentViewModelChanged()
         {
             OnPropertyChanged(nameof(CurrentViewModel));
+            CurrentViewModelTag = _navigator.CurrentViewModel.ToString();
         }
     }
 }

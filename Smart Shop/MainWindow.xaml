@@ -36,7 +36,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <!--  Left Navigation Cell  -->
-                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="160" />
                     <!--  Main Content Cell  -->
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
@@ -97,30 +97,18 @@
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
                             <Button
-                                Width="50"
-                                Height="30"
-                                Background="Transparent"
-                                BorderBrush="Transparent"
-                                BorderThickness="0"
-                                Click="OnMinimizeClick">
-                                <md:PackIcon
-                                    Width="20"
-                                    Height="20"
-                                    Margin="0,10,0,0"
-                                    BorderBrush="Transparent"
-                                    BorderThickness="0"
-                                    Foreground="{StaticResource PrimaryHueLightBrush}"
-                                    Kind="Minimize" />
-                            </Button>
-                            <Button
-                                Width="50"
-                                Margin="0,4,0,0"
-                                Background="Transparent"
+                                Width="14"
+                                Height="14"
+                                Margin="0,4,10,0"
                                 BorderBrush="Transparent"
                                 BorderThickness="0"
                                 Click="OnCloseClick"
-                                Content="X"
-                                Foreground="{StaticResource PrimaryHueLightBrush}" />
+                                Foreground="{StaticResource PrimaryHueLightBrush}"
+                                Style="{StaticResource CloseBtnStyle}">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Assets/Icons/shutdown_def.png" />
+                                </Button.Background>
+                            </Button>
                         </StackPanel>
 
                     </Grid>
@@ -131,32 +119,38 @@
                 <!--#endregion-->
 
                 <!--#region NAVIGATION-->
-                <Grid Grid.Row="1" Grid.Column="0">
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Width="70"
+                    Margin="20,0"
+                    HorizontalAlignment="Left">
                     <Border
+                        Width="70"
                         Margin="0,20"
                         BorderBrush="White"
-                        BorderThickness="0,0,.5,0"
                         Opacity=".4">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="90" />
-                                <RowDefinition Height="90" />
-                                <RowDefinition Height="90" />
-                                <RowDefinition Height="90" />
-                                <RowDefinition Height="90" />
-                                <RowDefinition Height="90" />
-                                <RowDefinition Height="100" />
+                                <RowDefinition Height="80" />
+                                <RowDefinition Height="80" />
+                                <RowDefinition Height="80" />
+                                <RowDefinition Height="80" />
+                                <RowDefinition Height="80" />
+                                <RowDefinition Height="80" />
+                                <RowDefinition Height="80" />
                             </Grid.RowDefinitions>
                             <Button
                                 x:Name="home_btn"
                                 Grid.Row="0"
                                 BorderBrush="Transparent"
+                                Command="{Binding NavigateHomeCommand}"
                                 Style="{StaticResource HoverBtnStyle}">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Assets/Icons/img_home.png" Stretch="Uniform" />
                                 </Button.Background>
                                 <Popup
-                                    Width="100"
+                                    Width="130"
                                     HorizontalOffset="10"
                                     IsOpen="{Binding ElementName=home_btn, Path=IsMouseOver, Mode=OneWay}"
                                     PlacementTarget="{Binding ElementName=home_btn}"
@@ -164,17 +158,17 @@
                                     VerticalOffset="10">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="24"/>
+                                            <ColumnDefinition Width="24" />
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
-                                        <Border Style="{StaticResource border}"
-                                                Grid.Column="1">
+                                        <Border Grid.Column="1" Style="{StaticResource border}">
                                             <TextBlock Style="{StaticResource PopupText}" Text="Home" />
                                         </Border>
-                                        <Path Style="{StaticResource ArrowPath}"
-                                              RenderTransformOrigin="0.5, 0.5"
-                                              Grid.Column="0"
-                                              Margin="0 8 0 0">
+                                        <Path
+                                            Grid.Column="0"
+                                            Margin="0,8,0,0"
+                                            RenderTransformOrigin="0.5, 0.5"
+                                            Style="{StaticResource ArrowPath}">
                                             <Path.RenderTransform>
                                                 <RotateTransform Angle="90" />
                                             </Path.RenderTransform>
@@ -184,41 +178,153 @@
                                 </Popup>
                             </Button>
                             <Button
+                                x:Name="invoice_btn"
                                 Grid.Row="1"
-                                Width="70"
-                                Height="70"
-                                Background="Transparent"
                                 BorderBrush="Transparent"
-                                Command="{Binding NavigateNewCustomerCommand}"
-                                Content="{md:PackIcon Kind=ListStatus,
-                                                      Size=40}" />
+                                Style="{StaticResource HoverBtnStyle}">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Assets/Icons/invoice.png" Stretch="Uniform" />
+                                </Button.Background>
+                                <Popup
+                                    Width="130"
+                                    HorizontalOffset="10"
+                                    IsOpen="{Binding ElementName=invoice_btn, Path=IsMouseOver, Mode=OneWay}"
+                                    PlacementTarget="{Binding ElementName=invoice_btn}"
+                                    Style="{StaticResource PopupStyle}"
+                                    VerticalOffset="10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="24" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="1" Style="{StaticResource border}">
+                                            <TextBlock Style="{StaticResource PopupText}" Text="Invoice" />
+                                        </Border>
+                                        <Path
+                                            Grid.Column="0"
+                                            Margin="0,8,0,0"
+                                            RenderTransformOrigin="0.5, 0.5"
+                                            Style="{StaticResource ArrowPath}">
+                                            <Path.RenderTransform>
+                                                <RotateTransform Angle="90" />
+                                            </Path.RenderTransform>
+                                        </Path>
+                                    </Grid>
+
+                                </Popup>
+                            </Button>
                             <Button
+                                x:Name="cust_btn"
                                 Grid.Row="2"
-                                Width="70"
-                                Height="70"
-                                Background="Transparent"
                                 BorderBrush="Transparent"
-                                Content="{md:PackIcon Kind=PersonHeart,
-                                                      Size=40}" />
+                                Command="{Binding NavigateCustomersCommand}"
+                                Style="{StaticResource HoverBtnStyle}">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Assets/Icons/new_cust.png" Stretch="Uniform" />
+                                </Button.Background>
+                                <Popup
+                                    Width="130"
+                                    HorizontalOffset="10"
+                                    IsOpen="{Binding ElementName=cust_btn, Path=IsMouseOver, Mode=OneWay}"
+                                    PlacementTarget="{Binding ElementName=cust_btn}"
+                                    Style="{StaticResource PopupStyle}"
+                                    VerticalOffset="10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="24" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="1" Style="{StaticResource border}">
+                                            <TextBlock Style="{StaticResource PopupText}" Text="Customers" />
+                                        </Border>
+                                        <Path
+                                            Grid.Column="0"
+                                            Margin="0,8,0,0"
+                                            RenderTransformOrigin="0.5, 0.5"
+                                            Style="{StaticResource ArrowPath}">
+                                            <Path.RenderTransform>
+                                                <RotateTransform Angle="90" />
+                                            </Path.RenderTransform>
+                                        </Path>
+                                    </Grid>
+
+                                </Popup>
+                            </Button>
                             <Button
+                                x:Name="viewInv_btn"
                                 Grid.Row="3"
-                                Width="70"
-                                Height="70"
-                                Background="Transparent"
                                 BorderBrush="Transparent"
                                 Command="{Binding NavigateNewInvoiceCommand}"
-                                Content="{md:PackIcon Kind=PersonDetails,
-                                                      Size=40}" />
+                                Style="{StaticResource HoverBtnStyle}">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Assets/Icons/view_invoice.png" Stretch="Uniform" />
+                                </Button.Background>
+                                <Popup
+                                    Width="130"
+                                    HorizontalOffset="10"
+                                    IsOpen="{Binding ElementName=viewInv_btn, Path=IsMouseOver, Mode=OneWay}"
+                                    PlacementTarget="{Binding ElementName=viewInv_btn}"
+                                    Style="{StaticResource PopupStyle}"
+                                    VerticalOffset="10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="24" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="1" Style="{StaticResource border}">
+                                            <TextBlock Style="{StaticResource PopupText}" Text="View Invoices" />
+                                        </Border>
+                                        <Path
+                                            Grid.Column="0"
+                                            Margin="0,8,0,0"
+                                            RenderTransformOrigin="0.5, 0.5"
+                                            Style="{StaticResource ArrowPath}">
+                                            <Path.RenderTransform>
+                                                <RotateTransform Angle="90" />
+                                            </Path.RenderTransform>
+                                        </Path>
+                                    </Grid>
+
+                                </Popup>
+                            </Button>
                             <Button
+                                x:Name="settings_btn"
                                 Grid.Row="6"
-                                Width="70"
-                                Height="70"
                                 VerticalAlignment="Bottom"
-                                Background="Transparent"
                                 BorderBrush="Transparent"
                                 Command="{Binding NavigateSettingsCommand}"
-                                Content="{md:PackIcon Kind=GearOutline,
-                                                      Size=40}" />
+                                Style="{StaticResource HoverBtnStyle}">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Assets/Icons/img_settings.png" Stretch="Uniform" />
+                                </Button.Background>
+                                <Popup
+                                    Width="130"
+                                    HorizontalOffset="10"
+                                    IsOpen="{Binding ElementName=settings_btn, Path=IsMouseOver, Mode=OneWay}"
+                                    PlacementTarget="{Binding ElementName=settings_btn}"
+                                    Style="{StaticResource PopupStyle}"
+                                    VerticalOffset="10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="24" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="1" Style="{StaticResource border}">
+                                            <TextBlock Style="{StaticResource PopupText}" Text="Settings" />
+                                        </Border>
+                                        <Path
+                                            Grid.Column="0"
+                                            Margin="0,8,0,0"
+                                            RenderTransformOrigin="0.5, 0.5"
+                                            Style="{StaticResource ArrowPath}">
+                                            <Path.RenderTransform>
+                                                <RotateTransform Angle="90" />
+                                            </Path.RenderTransform>
+                                        </Path>
+                                    </Grid>
+
+                                </Popup>
+                            </Button>
                         </Grid>
 
                     </Border>
@@ -226,29 +332,65 @@
 
                 <!--#endregion-->
 
+
+
                 <!--#region MAIN CONTENT-->
-                <ContentControl
+                <Grid
                     Grid.Row="1"
                     Grid.Column="1"
-                    Margin="40"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Content="{Binding CurrentViewModel}">
-                    <ContentControl.Resources>
-                        <DataTemplate DataType="{x:Type vm:HomeViewViewModel}">
-                            <v:HomeView />
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:AddCustomerViewModel}">
-                            <v:AddCustomerView />
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:NewInvoiceViewModel}">
-                            <v:NewInvoiceView />
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
-                            <v:SettingsView />
-                        </DataTemplate>
-                    </ContentControl.Resources>
-                </ContentControl>
+                    Margin="60,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <!--#region BACK BUTTON-->
+                    <Border
+                        Grid.Row="0"
+                        Background="{StaticResource PrimaryBackgroundToSecondaryBackgroundGradientBrush}"
+                        Opacity=".4"
+                        CornerRadius="12">
+                        <Button
+                            Grid.Row="0"
+                            Width="20"
+                            Height="20"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="20 0"
+                            BorderBrush="Transparent"
+                            IsEnabled="{Binding IsBackEnabled}">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Assets/Icons/back_arrow.png" />
+                            </Button.Background>
+
+                        </Button>
+                    </Border>
+
+                    <!--#endregion-->
+
+                    <ContentControl
+                        Grid.Row="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Margin="0 20"
+                        Content="{Binding CurrentViewModel}">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type vm:HomeViewViewModel}">
+                                <v:HomeView />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:CustomersViewModel}">
+                                <v:CustomersView />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:NewInvoiceViewModel}">
+                                <v:NewInvoiceView />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+                                <v:SettingsView />
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
+                </Grid>
+
                 <!--#endregion-->
 
                 <!--#region  FOOTER-->

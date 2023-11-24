@@ -11,9 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Icons\add-user.png" />
+    <None Remove="Assets\Icons\back_arrow.png" />
     <None Remove="Assets\Icons\img_chrome.png" />
     <None Remove="Assets\Icons\img_downloads.png" />
+    <None Remove="Assets\Icons\img_file.png" />
     <None Remove="Assets\Icons\img_home.png" />
+    <None Remove="Assets\Icons\img_invoice.png" />
     <None Remove="Assets\Icons\img_mail.png" />
     <None Remove="Assets\Icons\img_photoshop.png" />
     <None Remove="Assets\Icons\img_settings.png" />
@@ -22,9 +26,12 @@
     <None Remove="Assets\Icons\img_vs.png" />
     <None Remove="Assets\Icons\img_word.png" />
     <None Remove="Assets\Icons\img_youtube.png" />
+    <None Remove="Assets\Icons\invoice.png" />
     <None Remove="Assets\Icons\man-profile.png" />
+    <None Remove="Assets\Icons\new_cust.png" />
     <None Remove="Assets\Icons\shutdown_def.png" />
     <None Remove="Assets\Icons\shutdown_mo.png" />
+    <None Remove="Assets\Icons\view_invoice.png" />
     <None Remove="Assets\Icons\woman-profile.png" />
   </ItemGroup>
 
@@ -56,13 +63,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Icons\add-user.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\back_arrow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\new_cust.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Icons\img_chrome.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Icons\img_downloads.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\Icons\img_file.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Icons\img_home.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\img_invoice.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Icons\img_mail.png">
@@ -89,6 +111,9 @@
     <Resource Include="Assets\Icons\img_youtube.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\Icons\invoice.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Icons\man-profile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -96,6 +121,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Icons\shutdown_mo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\view_invoice.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Icons\woman-profile.png">
