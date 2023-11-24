@@ -1,11 +1,14 @@
-﻿using Smart_Shop.Factories;
+﻿using Smart_Shop.Commands;
+using Smart_Shop.Factories;
 using Smart_Shop.Interfaces;
 using Smart_Shop.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Smart_Shop.ViewModels
 {
@@ -16,11 +19,20 @@ namespace Smart_Shop.ViewModels
 
         public ViewModelBase? CurrentViewModel => _navigator!.CurrentViewModel;
 
-        private List<Customer> _customers;
-        public List<Customer> Customers
+        public ICommand SearchCommand { get; }
+
+        private ObservableCollection<Customer> _customers;
+        public ObservableCollection<Customer> Customers
         {
             get => _customers;
             set => OnPropertyChanged(ref _customers, value);
+        }
+
+        private string _querytext;
+        public string QueryText
+        {
+            get => _querytext;
+            set => OnPropertyChanged(ref _querytext, value);
         }
 
         public CustomersViewModel( INavigator? navigator, AppDbContextFactory? dbFactory)
@@ -28,14 +40,37 @@ namespace Smart_Shop.ViewModels
             _dbFactory = dbFactory;
             _navigator = navigator;
             _navigator.CurrentViewModelChanged += OnCurrentViewModelChanged;
-            Customers = LoadCustomers();
+            SearchCommand = new RelayCommand(Search);
+            Customers = new();
+            LoadCustomers();
         }
 
-        private List<Customer> LoadCustomers()
+        private void Search()
+        {
+            using var db = _dbFactory.CreateDbContext();
+            var filtered = db.Customers.Where(x => x.CompanyName == QueryText).ToList();
+
+            if (filtered.Count() > 0)
+            {
+                Customers.Clear();
+                foreach (var c in filtered)
+                {
+                    Customers.Add(c);
+                }
+            }
+           
+
+        }
+
+        private void LoadCustomers()
         {
             using var db = _dbFactory.CreateDbContext();
             var customers = db.Customers.ToList();
-            return customers;
+
+            foreach (var c in customers)
+            {
+                Customers.Add(c);
+            }
         }
 
         private void OnCurrentViewModelChanged()

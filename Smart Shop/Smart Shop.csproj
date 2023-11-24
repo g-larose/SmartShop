@@ -20,6 +20,7 @@
     <None Remove="Assets\Icons\img_invoice.png" />
     <None Remove="Assets\Icons\img_mail.png" />
     <None Remove="Assets\Icons\img_photoshop.png" />
+    <None Remove="Assets\Icons\img_search.png" />
     <None Remove="Assets\Icons\img_settings.png" />
     <None Remove="Assets\Icons\img_trash.png" />
     <None Remove="Assets\Icons\img_user.png" />
@@ -67,6 +68,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Icons\back_arrow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\img_search.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Icons\new_cust.png">
