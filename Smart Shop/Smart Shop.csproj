@@ -15,11 +15,13 @@
     <None Remove="Assets\Icons\back_arrow.png" />
     <None Remove="Assets\Icons\img_chrome.png" />
     <None Remove="Assets\Icons\img_downloads.png" />
+    <None Remove="Assets\Icons\img_edit.png" />
     <None Remove="Assets\Icons\img_file.png" />
     <None Remove="Assets\Icons\img_home.png" />
     <None Remove="Assets\Icons\img_invoice.png" />
     <None Remove="Assets\Icons\img_mail.png" />
     <None Remove="Assets\Icons\img_photoshop.png" />
+    <None Remove="Assets\Icons\img_refresh.png" />
     <None Remove="Assets\Icons\img_search.png" />
     <None Remove="Assets\Icons\img_settings.png" />
     <None Remove="Assets\Icons\img_trash.png" />
@@ -68,6 +70,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Icons\back_arrow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\img_edit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\img_refresh.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Icons\img_search.png">

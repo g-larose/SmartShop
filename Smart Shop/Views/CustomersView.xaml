@@ -16,34 +16,104 @@
         </Grid.RowDefinitions>
         <StackPanel
             Grid.Row="0"
-            Margin="10 0"
+            Margin="10,0"
             HorizontalAlignment="Left"
             Orientation="Horizontal">
             <TextBox
                 Grid.Row="0"
                 Width="250"
-                FontSize="14"
                 VerticalContentAlignment="Bottom"
+                md:HintAssist.Foreground="{StaticResource PrimaryColorBrush}"
+                md:HintAssist.Hint="SEARCH"
+                FontSize="14"
                 Foreground="{StaticResource PrimaryColorBrush}"
-                Style="{StaticResource MaterialDesignTextBox}"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 Text="{Binding QueryText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <Button Width="20"
-                    Height="20"
-                    BorderBrush="Transparent"
-                    Margin="-30 0 0 0"
-                    Command="{Binding SearchCommand}">
+            <Button
+                Width="20"
+                Height="20"
+                Margin="-30,0,0,0"
+                BorderBrush="Transparent"
+                Command="{Binding SearchCommand}">
                 <Button.Background>
-                   <ImageBrush ImageSource="/Assets/Icons/img_search.png" /> 
+                    <ImageBrush ImageSource="/Assets/Icons/img_search.png" />
                 </Button.Background>
-                
             </Button>
+            <StackPanel Margin="40,0" Orientation="Horizontal">
+                <Button
+                    Width="30"
+                    Height="30"
+                    Margin="4,4,10,0"
+                    BorderBrush="Transparent"
+                    Command="{Binding AddNewCustomerCommand}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Assets/Icons/add-user.png" />
+                    </Button.Background>
+                </Button>
+                <Button
+                    Width="30"
+                    Height="30"
+                    Margin="4,4,0,0"
+                    BorderBrush="Transparent"
+                    Command="{Binding AddNewCustomerCommand}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Assets/Icons/img_refresh.png" />
+                    </Button.Background>
+                </Button>
+            </StackPanel>
+
         </StackPanel>
 
         <DataGrid
-            Margin="10 20"
             Grid.Row="1"
+            Margin="10,20"
+            AlternatingRowBackground="{StaticResource DataGridAltBackgroundBrush}"
+            AutoGenerateColumns="False"
+            CanUserAddRows="False"
+            IsReadOnly="True"
             ItemsSource="{Binding Customers}"
-            Style="{StaticResource MaterialDesignDataGrid}"
-            />
+            SelectionMode="Single"
+            SelectionUnit="FullRow"
+            Style="{StaticResource MaterialDesignDataGrid}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Identifier}" Header="IDENTIFIER" />
+                <DataGridTextColumn Binding="{Binding CompanyName}" Header="COMPANY" />
+                <DataGridTextColumn Binding="{Binding ContactName}" Header="CONTACT" />
+                <DataGridTextColumn Binding="{Binding Email}" Header="EMAIL" />
+                <DataGridTextColumn Binding="{Binding Phone}" Header="PHONE" />
+                <DataGridTemplateColumn Header="ACTIONS">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button
+                                    Width="20"
+                                    Height="20"
+                                    BorderBrush="Transparent"
+                                    Command="{Binding EditUserCommand}"
+                                    Content="EDIT"
+                                    Margin="0 0 10 0">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="/Assets/Icons/img_edit.png" />
+                                    </Button.Background>
+                                </Button>
+                                <Button
+                                    Width="20"
+                                    Height="20"
+                                    BorderBrush="Transparent"
+                                    Command="{Binding DataContext.DeleteCustomerCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"  
+                                    CommandParameter="{Binding}"
+                                    Content="DELETE"
+                                    Margin="10 0 0 0">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="/Assets/Icons/img_trash.png" />
+                                    </Button.Background>
+                                </Button>
+                            </StackPanel>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

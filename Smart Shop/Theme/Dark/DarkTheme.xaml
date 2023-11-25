@@ -9,6 +9,7 @@
     <Color x:Key="SecondaryBackground">#41403F</Color>
     <Color x:Key="Text">#fbfaf9</Color>
     <Color x:Key="ValidationError">#B55D55</Color>
+    <Color x:Key="DataGridAltBackground">#3E3E3E</Color>
 
     <!--  Brushes  -->
     <SolidColorBrush x:Key="PrimaryColorBrush" Color="{StaticResource Primary}" />
@@ -19,6 +20,7 @@
     <SolidColorBrush x:Key="SecondaryBackgroundColorBrush" Color="{StaticResource SecondaryBackground}" />
     <SolidColorBrush x:Key="TextColorBrush" Color="{StaticResource Text}" />
     <SolidColorBrush x:Key="ValidationErrorBrush" Color="{StaticResource ValidationError}" />
+    <SolidColorBrush x:Key="DataGridAltBackgroundBrush" Color="{StaticResource DataGridAltBackground}" />
 
     <!--#region  Gradients-->
 
