@@ -45,7 +45,7 @@
                     Height="30"
                     Margin="4,4,10,0"
                     BorderBrush="Transparent"
-                    Command="{Binding AddNewCustomerCommand}">
+                    Command="{Binding NavigateNewCustomerCommand}">
                     <Button.Background>
                         <ImageBrush ImageSource="/Assets/Icons/add-user.png" />
                     </Button.Background>
@@ -55,7 +55,7 @@
                     Height="30"
                     Margin="4,4,0,0"
                     BorderBrush="Transparent"
-                    Command="{Binding AddNewCustomerCommand}">
+                    Command="{Binding RefreshCustomersListCommand}">
                     <Button.Background>
                         <ImageBrush ImageSource="/Assets/Icons/img_refresh.png" />
                     </Button.Background>
@@ -64,56 +64,61 @@
 
         </StackPanel>
 
-        <DataGrid
+        <ScrollViewer
             Grid.Row="1"
-            Margin="10,20"
-            AlternatingRowBackground="{StaticResource DataGridAltBackgroundBrush}"
-            AutoGenerateColumns="False"
-            CanUserAddRows="False"
-            IsReadOnly="True"
-            ItemsSource="{Binding Customers}"
-            SelectionMode="Single"
-            SelectionUnit="FullRow"
-            Style="{StaticResource MaterialDesignDataGrid}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Identifier}" Header="IDENTIFIER" />
-                <DataGridTextColumn Binding="{Binding CompanyName}" Header="COMPANY" />
-                <DataGridTextColumn Binding="{Binding ContactName}" Header="CONTACT" />
-                <DataGridTextColumn Binding="{Binding Email}" Header="EMAIL" />
-                <DataGridTextColumn Binding="{Binding Phone}" Header="PHONE" />
-                <DataGridTemplateColumn Header="ACTIONS">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button
-                                    Width="20"
-                                    Height="20"
-                                    BorderBrush="Transparent"
-                                    Command="{Binding EditUserCommand}"
-                                    Content="EDIT"
-                                    Margin="0 0 10 0">
-                                    <Button.Background>
-                                        <ImageBrush ImageSource="/Assets/Icons/img_edit.png" />
-                                    </Button.Background>
-                                </Button>
-                                <Button
-                                    Width="20"
-                                    Height="20"
-                                    BorderBrush="Transparent"
-                                    Command="{Binding DataContext.DeleteCustomerCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"  
-                                    CommandParameter="{Binding}"
-                                    Content="DELETE"
-                                    Margin="10 0 0 0">
-                                    <Button.Background>
-                                        <ImageBrush ImageSource="/Assets/Icons/img_trash.png" />
-                                    </Button.Background>
-                                </Button>
-                            </StackPanel>
+            HorizontalScrollBarVisibility="Hidden"
+            VerticalScrollBarVisibility="Auto">
+            <DataGrid
+                Margin="10,20"
+                AlternatingRowBackground="{StaticResource DataGridAltBackgroundBrush}"
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                IsReadOnly="True"
+                ItemsSource="{Binding Customers}"
+                SelectionMode="Single"
+                SelectionUnit="FullRow"
+                Style="{StaticResource MaterialDesignDataGrid}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Identifier}" Header="IDENTIFIER" />
+                    <DataGridTextColumn Binding="{Binding CompanyName}" Header="COMPANY" />
+                    <DataGridTextColumn Binding="{Binding ContactName}" Header="CONTACT" />
+                    <DataGridTextColumn Binding="{Binding Email}" Header="EMAIL" />
+                    <DataGridTextColumn Binding="{Binding Phone}" Header="PHONE" />
+                    <DataGridTemplateColumn Header="ACTIONS">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button
+                                        Width="20"
+                                        Height="20"
+                                        Margin="0,0,10,0"
+                                        BorderBrush="Transparent"
+                                        Command="{Binding EditUserCommand}"
+                                        Content="EDIT">
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="/Assets/Icons/img_edit.png" />
+                                        </Button.Background>
+                                    </Button>
+                                    <Button
+                                        Width="20"
+                                        Height="20"
+                                        Margin="10,0,0,0"
+                                        BorderBrush="Transparent"
+                                        Command="{Binding DataContext.DeleteCustomerCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding}"
+                                        Content="DELETE">
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="/Assets/Icons/img_trash.png" />
+                                        </Button.Background>
+                                    </Button>
+                                </StackPanel>
 
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
     </Grid>
 </UserControl>

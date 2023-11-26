@@ -11,5 +11,6 @@ namespace Smart_Shop.Interfaces
     {
         public event Action CurrentViewModelChanged;
         public ViewModelBase? CurrentViewModel { get; set; }
+
     }
 }

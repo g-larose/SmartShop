@@ -1,27 +1,25 @@
-﻿using Smart_Shop.Commands;
+﻿using Microsoft.EntityFrameworkCore;
+using Smart_Shop.Commands;
+using Smart_Shop.Data;
 using Smart_Shop.Factories;
 using Smart_Shop.Interfaces;
 using Smart_Shop.Models;
-using Smart_Shop.Models.DTO;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Smart_Shop.ViewModels
 {
     public class CustomersViewModel : ViewModelBase
     {
-        private readonly AppDbContextFactory? _dbFactory;
+        private readonly IDbContextFactory<AppDbContext>? _dbFactory;
         private readonly INavigator? _navigator;
 
         public ViewModelBase? CurrentViewModel => _navigator!.CurrentViewModel;
 
         public ICommand SearchCommand { get; }
         public ICommand DeleteCustomerCommand { get; set; }
+        public ICommand NavigateNewCustomerCommand { get; }
+        public ICommand RefreshCustomersListCommand { get; }
 
         private ObservableCollection<Customer> _customers;
         public ObservableCollection<Customer> Customers
@@ -37,31 +35,41 @@ namespace Smart_Shop.ViewModels
             set => OnPropertyChanged(ref _querytext, value);
         }
 
-        public CustomersViewModel( INavigator? navigator, AppDbContextFactory? dbFactory)
+        public CustomersViewModel(INavigator? navigator, IDbContextFactory<AppDbContext>? dbFactory)
         {
             _dbFactory = dbFactory;
             _navigator = navigator;
-            _navigator.CurrentViewModelChanged += OnCurrentViewModelChanged;
+            _navigator!.CurrentViewModelChanged += OnCurrentViewModelChanged;
             SearchCommand = new RelayCommand(Search);
+            RefreshCustomersListCommand = new RelayCommand(RefreshCustomersList);
             DeleteCustomerCommand = new RelayCommand<Customer>(DeleteCustomer);
+            NavigateNewCustomerCommand = new NavigateCommand<AddCustomerViewModel>(_navigator, () => new AddCustomerViewModel(_navigator, _dbFactory));
             Customers = new();
+            LoadCustomers();
+        }
+
+        private void RefreshCustomersList()
+        {
+            Customers.Clear();
             LoadCustomers();
         }
 
         private void DeleteCustomer(Customer cust)
         {
-            using var db = _dbFactory.CreateDbContext();
-            var c = db.Customers.Where(x => x.CustomerId == cust.CustomerId).FirstOrDefault();
-            //db.Customers.Remove(c);
+            using var db = _dbFactory?.CreateDbContext();
+            var c = db!.Customers.Where(x => x.CustomerId == cust.CustomerId).FirstOrDefault();
+            db.Customers.Remove(c);
+            db.SaveChanges();
             var custToRemove = Customers.Where(c => c == cust).FirstOrDefault();
-            Customers.Remove(custToRemove); 
+            Customers.Remove(custToRemove!);
+
   
         }
 
         private void Search()
         {
-            using var db = _dbFactory.CreateDbContext();
-            var filtered = db.Customers.Where(x => x.CompanyName == QueryText).ToList();
+            using var db = _dbFactory?.CreateDbContext();
+            var filtered = db!.Customers.Where(x => x.CompanyName == QueryText).ToList();
 
             if (filtered.Count() > 0)
             {

@@ -17,9 +17,9 @@ namespace Smart_Shop.ViewModels
     public class HomeViewViewModel : ViewModelBase
     {
         private readonly INavigator? _navigator;
-        private readonly AppDbContextFactory? _dbContext;
+        private readonly IDbContextFactory<AppDbContext>? _dbContext;
 
-        public HomeViewViewModel(INavigator? navigator, AppDbContextFactory? dbContext)
+        public HomeViewViewModel(INavigator? navigator, IDbContextFactory<AppDbContext>? dbContext)
         {
             _navigator = navigator;
             _dbContext = dbContext;

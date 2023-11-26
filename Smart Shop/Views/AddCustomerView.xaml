@@ -75,7 +75,9 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Bottom"
                             Style="{StaticResource MaterialDesignIconButton}">
-                            <md:PackIcon Height="14" Kind="Edit" />
+                            <md:PackIcon Height="14" 
+                                         Kind="Edit" 
+                                         Foreground="{StaticResource PrimaryColorBrush}"/>
                         </Button>
 
                     </StackPanel>

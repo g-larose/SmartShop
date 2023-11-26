@@ -17,7 +17,7 @@ namespace Smart_Shop.ViewModels
     {
         //TODO: finish Add New Custopmer View
         private readonly INavigator _navigator;
-        private readonly AppDbContextFactory _dbContext;
+        private readonly IDbContextFactory<AppDbContext>? _dbContext;
         private readonly CustomerValidator _custValidator = new CustomerValidator();
 
         public ViewModelBase? CurrentViewModel => _navigator.CurrentViewModel;
@@ -26,7 +26,7 @@ namespace Smart_Shop.ViewModels
         public ICommand SaveCommand { get; }
 
         Dictionary<string, List<string>> Errors = new();
-        public bool HasErrors => Errors.Count > 0;
+
         #region FIELDS
 
         private string? _companyName;
@@ -34,6 +34,7 @@ namespace Smart_Shop.ViewModels
         private string? _email;
         private string? _phone;
         private string? _address;
+        private bool _hasErrors;
 
         public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
@@ -74,6 +75,12 @@ namespace Smart_Shop.ViewModels
         {
             get => _address;
             set => OnPropertyChanged(ref _address!, value);
+        }
+
+        public bool HasErrors
+        {
+            get => _hasErrors;
+            set => OnPropertyChanged(ref _hasErrors, value);
         }
 
         #endregion
@@ -118,44 +125,49 @@ namespace Smart_Shop.ViewModels
         #endregion
 
 
-        public AddCustomerViewModel(INavigator navigator, AppDbContextFactory dbContext)
+        public AddCustomerViewModel(INavigator navigator, IDbContextFactory<AppDbContext> dbContext)
         {
             _navigator = navigator;
             _dbContext = dbContext;
-            _navigator.CurrentViewModelChanged += OnCurrentViewModelChanged;  
+            _navigator.CurrentViewModelChanged += OnCurrentViewModelChanged;
+            ErrorsChanged += OnErrorsChanged;
             CancelCommand = new RelayCommand(Cancel);
             SaveCommand = new RelayCommand(Save);
         }
 
+        private void OnErrorsChanged(object? sender, DataErrorsChangedEventArgs e)
+        {
+            HasErrors = true;
+        }
+
         private void Save()
         {
-            using var db = _dbContext.CreateDbContext();
-            if (CompanyName is not null || ContactName is not null ||
-                Phone is not null || Email is not null || Address is not null)
-            {
-                // check to see if the customer already exists in the DB/
-                var c = db.Customers.Select(x => x.CompanyName == CompanyName).FirstOrDefault();
-
-                if (c is { })
+            if (CompanyName is not null && ContactName is not null &&
+                Phone is not null && Email is not null && Address is not null)
                 {
-                    //we save the customer to the db
-                    var cust = new Customer()
+                    // check to see if the customer already exists in the DB/
+                    using var db = _dbContext!.CreateDbContext();
+                    var c = db.Customers.Select(x => x.CompanyName == CompanyName).FirstOrDefault();
+
+                    if (c is { })
                     {
-                        Identifier = Guid.NewGuid(),
-                        CompanyName = CompanyName,
-                        ContactName = ContactName,
-                        Email = Email,
-                        Phone = Phone,
-                        Address = Address
+                        //we save the customer to the db
+                        var cust = new Customer()
+                        {
+                            Identifier = Guid.NewGuid(),
+                            CompanyName = CompanyName!,
+                            ContactName = ContactName!,
+                            Email = Email!,
+                            Phone = Phone!,
+                            Address = Address!
 
-                    };
+                        };
 
-                    db.Customers.Add(cust);
-                    db.SaveChanges();
-                    ClearInputs();
+                        db.Customers.Add(cust);
+                        db.SaveChanges();
+                        ClearInputs();
+                    } 
                 }
-               
-            }
         }
 
         private void ClearInputs()
@@ -169,8 +181,8 @@ namespace Smart_Shop.ViewModels
 
         private void Cancel()
         {
-            ICommand navigateHomeCommand = new NavigateCommand<HomeViewViewModel>(_navigator, () => new HomeViewViewModel(_navigator, _dbContext));
-            navigateHomeCommand.Execute(this);
+            ICommand navigateCustomersCommand = new NavigateCommand<CustomersViewModel>(_navigator, () => new CustomersViewModel(_navigator, _dbContext));
+            navigateCustomersCommand.Execute(this);
         }
 
 
@@ -187,7 +199,7 @@ namespace Smart_Shop.ViewModels
 
         public IEnumerable GetErrors(string? propertyName)
         {
-            if (Errors.ContainsKey(propertyName))
+            if (Errors.ContainsKey(propertyName!))
                 return Errors[propertyName];
             else
                 return Enumerable.Empty<string>();

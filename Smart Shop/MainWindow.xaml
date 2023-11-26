@@ -15,6 +15,9 @@
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="booltovisibilityconverter" />
+    </Window.Resources>
 
     <Grid Width="1400" Height="850">
         <Border
@@ -125,11 +128,7 @@
                     Width="70"
                     Margin="20,0"
                     HorizontalAlignment="Left">
-                    <Border
-                        Width="70"
-                        Margin="0,20"
-                        BorderBrush="White"
-                        Opacity=".4">
+                    <Border Width="70" Margin="0,20">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="80" />
@@ -218,6 +217,7 @@
                                 Grid.Row="2"
                                 BorderBrush="Transparent"
                                 Command="{Binding NavigateCustomersCommand}"
+                                CommandParameter="{Binding PreviousVM}"
                                 Style="{StaticResource HoverBtnStyle}">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Assets/Icons/new_cust.png" Stretch="Uniform" />
@@ -254,7 +254,7 @@
                                 x:Name="viewInv_btn"
                                 Grid.Row="3"
                                 BorderBrush="Transparent"
-                                Command="{Binding NavigateNewInvoiceCommand}"
+                                Command="{Binding NavigateViewInvoicesCommand}"
                                 Style="{StaticResource HoverBtnStyle}">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Assets/Icons/view_invoice.png" Stretch="Uniform" />
@@ -345,34 +345,31 @@
                     </Grid.RowDefinitions>
 
                     <!--#region BACK BUTTON-->
-                    <Border
-                        Grid.Row="0"
-                        Background="{StaticResource PrimaryBackgroundToSecondaryBackgroundGradientBrush}"
-                        Opacity=".4"
-                        CornerRadius="12">
-                        <Button
+
+                    <Button
                             Grid.Row="0"
                             Width="20"
                             Height="20"
+                            Margin="20,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
-                            Margin="20 0"
                             BorderBrush="Transparent"
+                            Command="{Binding BackCommand}"
+                            CommandParameter="{Binding}"
                             IsEnabled="{Binding IsBackEnabled}">
-                            <Button.Background>
-                                <ImageBrush ImageSource="Assets/Icons/back_arrow.png" />
-                            </Button.Background>
+                        <Button.Background>
+                            <ImageBrush ImageSource="Assets/Icons/back_arrow.png" />
+                        </Button.Background>
 
-                        </Button>
-                    </Border>
+                    </Button>
 
                     <!--#endregion-->
 
                     <ContentControl
                         Grid.Row="1"
+                        Margin="0,20"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Margin="0 20"
                         Content="{Binding CurrentViewModel}">
                         <ContentControl.Resources>
                             <DataTemplate DataType="{x:Type vm:HomeViewViewModel}">
@@ -386,6 +383,9 @@
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
                                 <v:SettingsView />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:AddCustomerViewModel}">
+                                <v:AddCustomerView />
                             </DataTemplate>
                         </ContentControl.Resources>
                     </ContentControl>

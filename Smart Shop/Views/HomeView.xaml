@@ -26,23 +26,23 @@
             Orientation="Horizontal">
             <!--#region RECENT ACTIVITY-->
             <Border
-                Width="200"
-                Height="100"
+                Width="240"
+                Height="200"
                 Margin="10"
                 VerticalAlignment="Top"
-                Background="{StaticResource PrimaryColorBrush}"
+                Background="{StaticResource PrimaryBackgroundToSecondaryBackgroundGradientBrush}"
                 CornerRadius="8">
                 <Border.Effect>
                     <DropShadowEffect
                         BlurRadius="4"
                         Direction="270"
                         Opacity=".6"
-                        ShadowDepth="4"
+                        ShadowDepth="1"
                         Color="Black" />
                 </Border.Effect>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="14" />
+                        <RowDefinition Height="24" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
@@ -52,7 +52,7 @@
                         CornerRadius="8 8 0 0">
                         <TextBlock
                             HorizontalAlignment="Center"
-                            FontSize="10"
+                            FontSize="18"
                             Text="Recent Activity" />
                     </Border>
                 </Grid>
@@ -62,23 +62,23 @@
 
             <!--#region RECENT CUSTOMERS-->
             <Border
-                Width="200"
-                Height="100"
+                Width="240"
+                Height="200"
                 Margin="10"
                 VerticalAlignment="Top"
-                Background="{StaticResource PrimaryColorBrush}"
+                Background="{StaticResource PrimaryBackgroundToSecondaryBackgroundGradientBrush}"
                 CornerRadius="8">
                 <Border.Effect>
                     <DropShadowEffect
-                        BlurRadius="4"
+                        BlurRadius="6"
                         Direction="270"
                         Opacity=".6"
-                        ShadowDepth="4"
+                        ShadowDepth="1"
                         Color="Black" />
                 </Border.Effect>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="14" />
+                        <RowDefinition Height="24" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
@@ -88,25 +88,39 @@
                         CornerRadius="8 8 0 0">
                         <TextBlock
                             HorizontalAlignment="Center"
-                            FontSize="10"
+                            FontSize="18"
                             Text="Recent Customer" />
 
                     </Border>
-                    <StackPanel
+                    <Border
                         Grid.Row="1"
-                        Margin="10"
-                        VerticalAlignment="Bottom"
-                        Orientation="Vertical">
-                        <Button
-                            Width="80"
-                            Height="20"
-                            Padding="2"
-                            HorizontalAlignment="Right"
+                        Width="200"
+                        Height="150"
+                        Margin="5,10"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Background="{StaticResource PrimaryBackgroundToSecondaryBackgroundGradientBrush}"
+                        CornerRadius="12"
+                        BorderBrush="{StaticResource SecondaryColorBrush}"
+                        BorderThickness="1 0 1 1">
+                      
+                        <StackPanel
+                            Grid.Row="1"
+                            Margin="10"
                             VerticalAlignment="Bottom"
-                            Content="Add Customer"
-                            FontSize="8"
-                            Style="{StaticResource MaterialDesignFlatButton}" />
-                    </StackPanel>
+                            Orientation="Vertical">
+                            <Button
+                                Width="80"
+                                Height="20"
+                                Padding="2"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Content="Add Customer"
+                                FontSize="8"
+                                Style="{StaticResource MaterialDesignFlatAccentBgButton}" />
+                        </StackPanel>
+                    </Border>
+
                 </Grid>
 
             </Border>

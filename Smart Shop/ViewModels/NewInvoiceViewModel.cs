@@ -4,18 +4,13 @@ using Smart_Shop.Data;
 using Smart_Shop.Factories;
 using Smart_Shop.Interfaces;
 using Smart_Shop.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Smart_Shop.ViewModels
 {
     public class NewInvoiceViewModel : ViewModelBase
     {
-        private AppDbContextFactory _dbFactory;
+        private IDbContextFactory<AppDbContext> _dbFactory;
         private INavigator _navigator;
 
         public ViewModelBase? CurrentViewModel => _navigator.CurrentViewModel;
@@ -48,7 +43,7 @@ namespace Smart_Shop.ViewModels
             set => OnPropertyChanged(ref _customers, value);
         }
 
-        public NewInvoiceViewModel(INavigator navigator, AppDbContextFactory dbFactory)
+        public NewInvoiceViewModel(INavigator navigator, IDbContextFactory<AppDbContext> dbFactory)
         {
             _dbFactory = dbFactory;
             _navigator = navigator;

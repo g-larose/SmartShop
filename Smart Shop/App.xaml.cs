@@ -22,7 +22,7 @@ public partial class App : Application
     {
         _host = Host.CreateDefaultBuilder().ConfigureServices(services =>
         {
-            services.AddSingleton<AppDbContextFactory>();
+            services.AddDbContextFactory<AppDbContext>();
             services.AddSingleton<AppViewModel>();
             services.AddSingleton<SettingsViewModel>();
             services.AddSingleton<MainWindow>(s => new MainWindow()

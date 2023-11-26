@@ -11,6 +11,8 @@ namespace Smart_Shop.Navigation
     public class Navigator : INavigator
     {
         public event Action? CurrentViewModelChanged;
+
+
         private ViewModelBase? _currentViewModel;
         public ViewModelBase? CurrentViewModel
         {
@@ -21,10 +23,10 @@ namespace Smart_Shop.Navigation
                 OnCurrentViewModelChanged();
             }
         }
-
         private void OnCurrentViewModelChanged()
         {
             CurrentViewModelChanged?.Invoke();
         }
+
     }
 }
