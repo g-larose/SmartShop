@@ -48,6 +48,7 @@ namespace Smart_Shop.ViewModels
         public ICommand NavigateHomeCommand { get; }
         public ICommand NavigateSettingsCommand { get; }
         public ICommand NavigateCustomersCommand { get; }
+        public ICommand NavigateAddCustomerCommand { get; }
         public ICommand NavigateNewInvoiceCommand { get; }
         public ICommand NavigateViewInvoicesCommand { get; }
         public ICommand NavigateBackCommand { get; set; }
@@ -64,32 +65,49 @@ namespace Smart_Shop.ViewModels
             NavigateSettingsCommand = new NavigateCommand<SettingsViewModel>(_navigator, () => new SettingsViewModel());
             NavigateCustomersCommand = new NavigateCommand<CustomersViewModel>(_navigator, () => new CustomersViewModel(_navigator, _dbContext));
             NavigateNewInvoiceCommand = new NavigateCommand<NewInvoiceViewModel>(_navigator, () => new NewInvoiceViewModel(_navigator, _dbContext));
+            NavigateAddCustomerCommand = new NavigateCommand<AddCustomerViewModel>(_navigator, () => new AddCustomerViewModel(_navigator, _dbContext));
             BackCommand = new RelayCommand(NavigateBack);
         }
 
         private void NavigateBack()
         {
-
-            var vm = PreviousVMList.Pop(); 
-            if (vm is HomeViewViewModel)
+            if (PreviousVMList.Count() > 1)
             {
-                ICommand navigateHomeCommand = new NavigateCommand<HomeViewViewModel>(_navigator, () => new HomeViewViewModel(_navigator, _dbContext));
-                navigateHomeCommand.Execute(this);
-            }
-            else if (vm is CustomersViewModel)
-            {
-                ICommand navigateCustomersCommand = new NavigateCommand<CustomersViewModel>(_navigator, () => new CustomersViewModel(_navigator, _dbContext));
-                navigateCustomersCommand.Execute(this);
-            }
+                var vm = PreviousVMList.ElementAt(1); 
+                if (vm is HomeViewViewModel)
+                {
+                    NavigateHomeCommand.Execute(this);
+                    PreviousVMList.Pop();
+                    PreviousVMList.Pop();
+                }
+                else if (vm is CustomersViewModel)
+                {
+                    NavigateCustomersCommand.Execute(this);
+                    PreviousVMList.Pop();
+                    PreviousVMList.Pop();
+                }
+                else if (vm is SettingsViewModel)
+                {
+                    NavigateSettingsCommand.Execute(this);
+                    PreviousVMList.Pop();
+                    PreviousVMList.Pop();
+                }
+                else if (vm is AddCustomerViewModel)
+                {
+                    NavigateAddCustomerCommand.Execute(this);
+                    PreviousVMList.Pop();
+                    PreviousVMList.Pop();
+                }
 
-            IsBackEnabled = PreviousVMList.Count() > 0;
+            }
+            IsBackEnabled = PreviousVMList.Count() > 1;
         }
 
         private void OnCurrentViewModelChanged()
         {
             OnPropertyChanged(nameof(CurrentViewModel));
-            PreviousVMList.Push(CurrentViewModel);
-            IsBackEnabled = PreviousVMList.Count() > 0;
+            PreviousVMList.Push(CurrentViewModel!);
+            IsBackEnabled = PreviousVMList.Count() > 1;
         }
     }
 }

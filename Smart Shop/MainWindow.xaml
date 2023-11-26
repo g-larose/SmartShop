@@ -217,7 +217,7 @@
                                 Grid.Row="2"
                                 BorderBrush="Transparent"
                                 Command="{Binding NavigateCustomersCommand}"
-                                CommandParameter="{Binding PreviousVM}"
+                                CommandParameter="{Binding PreviousVM, UpdateSourceTrigger=PropertyChanged}"
                                 Style="{StaticResource HoverBtnStyle}">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Assets/Icons/new_cust.png" Stretch="Uniform" />
