@@ -59,6 +59,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Configuration\" />
     <Folder Include="Data\Json\" />
     <Folder Include="Data\Xml\" />
     <Folder Include="Migrations\" />
@@ -144,9 +145,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Configuration\config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="Data\Settings\appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
