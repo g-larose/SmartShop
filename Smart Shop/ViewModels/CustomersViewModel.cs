@@ -40,6 +40,13 @@ namespace Smart_Shop.ViewModels
             set => OnPropertyChanged(ref _querytext, value);
         }
 
+        private Customer _customer;
+        public Customer Customer
+        {
+            get => _customer;
+            set => OnPropertyChanged(ref _customer, value);
+        }
+
         public CustomersViewModel(INavigator? navigator, IDbContextFactory<AppDbContext> dbFactory)
         {
             _dbFactory = dbFactory;
@@ -59,8 +66,9 @@ namespace Smart_Shop.ViewModels
             using var db = _dbFactory!.CreateDbContext();
             var c = db!.Customers.Where(x => x.CustomerId == customer.CustomerId).FirstOrDefault();
             //try to open a dialog and fill with customer data.
-            EditCustomerWindow cWindow = new EditCustomerWindow();
-            cWindow.Show();
+            Customer = c!;
+            EditCustomerCommand = new NavigateCommand<EditCustomerViewModel>(_navigator!, () => new EditCustomerViewModel(_navigator!, _dbFactory, Customer!));
+            EditCustomerCommand.Execute(this);
         }
 
         private void RefreshCustomersList()

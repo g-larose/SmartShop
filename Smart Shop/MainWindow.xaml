@@ -161,8 +161,7 @@
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
                                         <Border Grid.Column="1" Style="{StaticResource border}">
-                                            <TextBlock Style="{StaticResource PopupText}" 
-                                                       Text="Home" />
+                                            <TextBlock Style="{StaticResource PopupText}" Text="Home" />
                                         </Border>
                                         <Path
                                             Grid.Column="0"
@@ -391,6 +390,9 @@
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type vm:InvoicesListViewModel}">
                                 <v:InvoicesListView />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:EditCustomerViewModel}">
+                                <v:EditCustomerView />
                             </DataTemplate>
                         </ContentControl.Resources>
                     </ContentControl>

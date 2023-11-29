@@ -9,6 +9,7 @@ using Smart_Shop.Commands;
 using Smart_Shop.Data;
 using Smart_Shop.Factories;
 using Smart_Shop.Interfaces;
+using Smart_Shop.Services;
 
 namespace Smart_Shop.ViewModels
 {
@@ -51,16 +52,15 @@ namespace Smart_Shop.ViewModels
         public ICommand NavigateAddCustomerCommand { get; }
         public ICommand NavigateNewInvoiceCommand { get; }
         public ICommand NavigateInvoicesCommand { get; }
-        public ICommand NavigateBackCommand { get; set; }
         public ICommand BackCommand { get; }
 
         
 
-        public AppViewModel(IUtility utilityService, INavigator navigator, IDbContextFactory<AppDbContext> dbContext)
+        public AppViewModel(INavigator navigator, IDbContextFactory<AppDbContext> dbContext)
         {
             _dbContext = dbContext;
             _navigator = navigator;
-            _utilityService = utilityService;
+            _utilityService = new UtilityService();
             _navigator.CurrentViewModelChanged += OnCurrentViewModelChanged;
             BuildVer = _utilityService.GenerateBuildVersion();
             NavigateHomeCommand = new NavigateCommand<HomeViewViewModel>(_navigator, () => new HomeViewViewModel(_navigator, _dbContext));
@@ -96,6 +96,12 @@ namespace Smart_Shop.ViewModels
                     PreviousVMList.Pop();
                 }
                 else if (vm is AddCustomerViewModel)
+                {
+                    NavigateAddCustomerCommand.Execute(this);
+                    PreviousVMList.Pop();
+                    PreviousVMList.Pop();
+                }
+                else if (vm is EditCustomerViewModel)
                 {
                     NavigateAddCustomerCommand.Execute(this);
                     PreviousVMList.Pop();

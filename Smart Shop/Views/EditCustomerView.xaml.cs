@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Smart_Shop.Views
 {
     /// <summary>
-    /// Interaction logic for EditCustomerWindow.xaml
+    /// Interaction logic for EditCustomerView.xaml
     /// </summary>
-    public partial class EditCustomerWindow : Window
+    public partial class EditCustomerView : UserControl
     {
-        public EditCustomerWindow()
+        public EditCustomerView()
         {
             InitializeComponent();
         }
