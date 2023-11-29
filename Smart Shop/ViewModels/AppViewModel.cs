@@ -50,9 +50,11 @@ namespace Smart_Shop.ViewModels
         public ICommand NavigateCustomersCommand { get; }
         public ICommand NavigateAddCustomerCommand { get; }
         public ICommand NavigateNewInvoiceCommand { get; }
-        public ICommand NavigateViewInvoicesCommand { get; }
+        public ICommand NavigateInvoicesCommand { get; }
         public ICommand NavigateBackCommand { get; set; }
         public ICommand BackCommand { get; }
+
+        
 
         public AppViewModel(IUtility utilityService, INavigator navigator, IDbContextFactory<AppDbContext> dbContext)
         {
@@ -66,6 +68,7 @@ namespace Smart_Shop.ViewModels
             NavigateCustomersCommand = new NavigateCommand<CustomersViewModel>(_navigator, () => new CustomersViewModel(_navigator, _dbContext));
             NavigateNewInvoiceCommand = new NavigateCommand<NewInvoiceViewModel>(_navigator, () => new NewInvoiceViewModel(_navigator, _dbContext));
             NavigateAddCustomerCommand = new NavigateCommand<AddCustomerViewModel>(_navigator, () => new AddCustomerViewModel(_navigator, _dbContext));
+            NavigateInvoicesCommand = new NavigateCommand<InvoicesListViewModel>(_navigator, () => new InvoicesListViewModel(_navigator, dbContext));
             BackCommand = new RelayCommand(NavigateBack);
         }
 
@@ -98,6 +101,12 @@ namespace Smart_Shop.ViewModels
                     PreviousVMList.Pop();
                     PreviousVMList.Pop();
                 }
+                else if (vm is InvoicesListViewModel)
+                {
+                    NavigateInvoicesCommand.Execute(this);
+                    PreviousVMList.Pop();
+                    PreviousVMList.Pop();
+                }
 
             }
             IsBackEnabled = PreviousVMList.Count() > 1;
@@ -106,8 +115,11 @@ namespace Smart_Shop.ViewModels
         private void OnCurrentViewModelChanged()
         {
             OnPropertyChanged(nameof(CurrentViewModel));
-            PreviousVMList.Push(CurrentViewModel!);
+
+            if (!PreviousVMList.Contains(CurrentViewModel))
+                PreviousVMList.Push(CurrentViewModel!);
             IsBackEnabled = PreviousVMList.Count() > 1;
+
         }
     }
 }

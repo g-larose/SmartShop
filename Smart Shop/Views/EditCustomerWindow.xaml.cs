@@ -1,5 +1,4 @@
-﻿using Smart_Shop.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Smart_Shop.Views
 {
     /// <summary>
-    /// Interaction logic for AddCustomerView.xaml
+    /// Interaction logic for EditCustomerWindow.xaml
     /// </summary>
-    public partial class AddCustomerView : UserControl
+    public partial class EditCustomerWindow : Window
     {
-        public AddCustomerView()
+        public EditCustomerWindow()
         {
             InitializeComponent();
         }

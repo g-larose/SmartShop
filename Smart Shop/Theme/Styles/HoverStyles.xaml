@@ -107,7 +107,7 @@
 
     <!--  // POPUP TEXT //  -->
     <Style x:Key="PopupText" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource PrimaryColorBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource BackgroundColorBrush}" />
         <Setter Property="FontFamily" Value="Roboto" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="VerticalAlignment" Value="Center" />

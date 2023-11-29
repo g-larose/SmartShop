@@ -1,60 +1,48 @@
-﻿<UserControl x:Class="Smart_Shop.Views.SettingsView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Smart_Shop.Views"
-             mc:Ignorable="d" 
-             Height="450" Width="800">
-     <Grid>
-     <Border
-         Width="790"
-         Height="440"
-         VerticalAlignment="Top"
-         Background="{StaticResource PrimaryBackgroundToSecondaryBackgroundGradientBrush}"
-         CornerRadius="12">
-         <Border.Effect>
-             <DropShadowEffect
-                 BlurRadius="4"
-                 Direction="270"
-                 Opacity=".6"
-                 ShadowDepth="4"
-                 Color="Black" />
-         </Border.Effect>
-         <Grid>
-             <Grid.ColumnDefinitions>
-                 <ColumnDefinition Width="20" />
-                 <ColumnDefinition />
-                 <ColumnDefinition Width="20" />
-             </Grid.ColumnDefinitions>
-             <Grid.RowDefinitions>
-                 <RowDefinition Height="20" />
-                 <RowDefinition />
-                 <RowDefinition />
-                 <RowDefinition />
-                 <RowDefinition />
-                 <RowDefinition />
-                 <RowDefinition />
-                 <RowDefinition Height="4" />
-             </Grid.RowDefinitions>
-             <!--#region HEADER-->
-             <Border
-                 Grid.Row="0"
-                 Grid.Column="0"
-                 Grid.ColumnSpan="3"
-                 Background="{StaticResource AccentToSecondaryAccentGradientBrush}"
-                 CornerRadius="12 12 0 0" />
-             <!--#endregion-->
+﻿<UserControl
+    x:Class="Smart_Shop.Views.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Smart_Shop.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <md:Card md:ElevationAssist.Elevation="Dp24" UniformCornerRadius="12">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="4" />
+            </Grid.RowDefinitions>
+            <!--#region HEADER-->
+            <md:ColorZone
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Width="Auto"
+                Height="50"
+                Mode="SecondaryMid" />
+            <!--#endregion-->
 
-             <!--#region FOOTER-->
-             <Border
-                 Grid.Row="7"
-                 Grid.Column="0"
-                 Grid.ColumnSpan="3"
-                 Background="{StaticResource AccentToSecondaryAccentGradientBrush}"
-                 CornerRadius="0 0 12 12" />
-             <!--#endregion-->
-         </Grid>
-     </Border>
- </Grid>
+            <!--#region FOOTER-->
+            <Border
+                Grid.Row="7"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Background="{StaticResource AccentToSecondaryAccentGradientBrush}"
+                CornerRadius="0 0 12 12" />
+            <!--#endregion-->
+        </Grid>
+    </md:Card>
 </UserControl>

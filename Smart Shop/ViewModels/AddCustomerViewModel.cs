@@ -4,6 +4,7 @@ using Smart_Shop.Data;
 using Smart_Shop.Factories;
 using Smart_Shop.Interfaces;
 using Smart_Shop.Models;
+using Smart_Shop.Navigation;
 using Smart_Shop.Validation;
 using System.Collections;
 using System.Collections.ObjectModel;
@@ -13,19 +14,21 @@ using System.Windows.Input;
 
 namespace Smart_Shop.ViewModels
 {
-    public class AddCustomerViewModel : ViewModelBase, IDataErrorInfo, INotifyDataErrorInfo
+    public class AddCustomerViewModel : ViewModelBase, INotifyDataErrorInfo
     {
-        //TODO: finish Add New Custopmer View
+        //TODO: work on data validation
         private readonly INavigator _navigator;
         private readonly IDbContextFactory<AppDbContext>? _dbContext;
-        private readonly CustomerValidator _custValidator = new CustomerValidator();
+        private readonly ErrorsViewModel _errorsViewModel;
 
         public ViewModelBase? CurrentViewModel => _navigator.CurrentViewModel;
 
         public ICommand CancelCommand { get; }
         public ICommand SaveCommand { get; }
 
-        Dictionary<string, List<string>> Errors = new();
+        public bool CanSave => _errorsViewModel.HasErrors;
+        public bool HasErrors { get; }
+        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
         #region FIELDS
 
@@ -34,10 +37,6 @@ namespace Smart_Shop.ViewModels
         private string? _email;
         private string? _phone;
         private string? _address;
-        private bool _hasErrors;
-
-        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
-
 
         #endregion
 
@@ -46,14 +45,32 @@ namespace Smart_Shop.ViewModels
         public string? CompanyName
         {
             get => _companyName;
-            set => OnPropertyChanged(ref _companyName!, value);
+            set
+            {
+                _companyName = value;
+                _errorsViewModel.ClearErrors(nameof(CompanyName));
+                if (string.IsNullOrEmpty(CompanyName))
+                {
+                    _errorsViewModel.AddError(nameof(CompanyName), "Company Name cannot be empty");
+                }
+                OnPropertyChanged(ref _companyName!, value);
+            }
         }
 
        
         public string? ContactName
         {
             get => _contactName;
-            set => OnPropertyChanged(ref _contactName!, value);
+            set
+            {
+                _contactName = value;
+                _errorsViewModel.ClearErrors(nameof(ContactName));
+                if (string.IsNullOrEmpty(ContactName))
+                {
+                    _errorsViewModel.AddError(nameof(ContactName), "Company Name cannot be empty");
+                }
+                OnPropertyChanged(ref _contactName!, value);
+            }
         }
 
         
@@ -76,70 +93,24 @@ namespace Smart_Shop.ViewModels
             get => _address;
             set => OnPropertyChanged(ref _address!, value);
         }
-
-        public bool HasErrors
-        {
-            get => _hasErrors;
-            set => OnPropertyChanged(ref _hasErrors, value);
-        }
-
-        #endregion
-
-        #region VALIDATION
-
-        public string this[string columnName]
-        {
-            get
-            {
-                var firstOrDefault = _custValidator.Validate(this).Errors.FirstOrDefault(p => p.PropertyName == columnName);
-                if (firstOrDefault != null)
-                {
-                    return _custValidator != null ? firstOrDefault.ErrorMessage : "";
-                }
-               
-                return "";
-            }
-        }
-
-        public string Error
-        {
-            get
-            {
-                if (_custValidator != null)
-                {
-                    var results = _custValidator.Validate(this);
-                    if (results != null && results.Errors.Any())
-                    {
-
-                        var errors = string.Join(Environment.NewLine, results.Errors.Select(x => x.ErrorMessage).ToArray());
-                        return errors;
-                    }
-                }
-                
-                return string.Empty;
-            }
-        }
-
        
-
         #endregion
 
-
-        public AddCustomerViewModel(INavigator navigator, IDbContextFactory<AppDbContext> dbContext)
+        public AddCustomerViewModel(INavigator navigator, IDbContextFactory<AppDbContext> dbFactory )
         {
             _navigator = navigator;
-            _dbContext = dbContext;
+            _dbContext = dbFactory;
+            _errorsViewModel = new ErrorsViewModel();
             _navigator.CurrentViewModelChanged += OnCurrentViewModelChanged;
-            ErrorsChanged += OnErrorsChanged;
+            _errorsViewModel.ErrorsChanged += OnErrorsChanged;
             CancelCommand = new RelayCommand(Cancel);
             SaveCommand = new RelayCommand(Save);
         }
 
         private void OnErrorsChanged(object? sender, DataErrorsChangedEventArgs e)
         {
-            HasErrors = true;
+            ErrorsChanged?.Invoke(this, e);
         }
-
         private void Save()
         {
             if (CompanyName is not null && ContactName is not null &&
@@ -172,11 +143,11 @@ namespace Smart_Shop.ViewModels
 
         private void ClearInputs()
         {
-            CompanyName = "";
-            ContactName = "";
-            Email = "";
-            Phone = "";
-            Address = "";
+            CompanyName = string.Empty;
+            ContactName = string.Empty;
+            Email = string.Empty;
+            Phone = string.Empty;
+            Address = string.Empty;
         }
 
         private void Cancel()
@@ -191,18 +162,10 @@ namespace Smart_Shop.ViewModels
             OnPropertyChanged(nameof(CurrentViewModel));
         }
 
-        private bool CanExecute(object args)
-        {
-            var result = _custValidator.Validate(this);
-            return result.IsValid;
-        }
 
         public IEnumerable GetErrors(string? propertyName)
         {
-            if (Errors.ContainsKey(propertyName!))
-                return Errors[propertyName];
-            else
-                return Enumerable.Empty<string>();
+            return _errorsViewModel.GetErrors(propertyName);
         }
     }
 }

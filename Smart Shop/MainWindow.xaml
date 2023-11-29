@@ -76,7 +76,7 @@
                                 VerticalAlignment="Center"
                                 FontSize="18"
                                 Foreground="{StaticResource PrimaryColorBrush}"
-                                Text="Smart Shop">
+                                Text="Smart Shop [Office Manager]">
                                 <TextBlock.Effect>
                                     <DropShadowEffect
                                         BlurRadius="4"
@@ -161,7 +161,8 @@
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
                                         <Border Grid.Column="1" Style="{StaticResource border}">
-                                            <TextBlock Style="{StaticResource PopupText}" Text="Home" />
+                                            <TextBlock Style="{StaticResource PopupText}" 
+                                                       Text="Home" />
                                         </Border>
                                         <Path
                                             Grid.Column="0"
@@ -180,6 +181,7 @@
                                 x:Name="invoice_btn"
                                 Grid.Row="1"
                                 BorderBrush="Transparent"
+                                Command="{Binding NavigateInvoicesCommand}"
                                 Style="{StaticResource HoverBtnStyle}">
                                 <Button.Background>
                                     <ImageBrush ImageSource="Assets/Icons/invoice.png" Stretch="Uniform" />
@@ -347,16 +349,16 @@
                     <!--#region BACK BUTTON-->
 
                     <Button
-                            Grid.Row="0"
-                            Width="20"
-                            Height="20"
-                            Margin="20,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            BorderBrush="Transparent"
-                            Command="{Binding BackCommand}"
-                            CommandParameter="{Binding}"
-                            IsEnabled="{Binding IsBackEnabled}">
+                        Grid.Row="0"
+                        Width="20"
+                        Height="20"
+                        Margin="20,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        BorderBrush="Transparent"
+                        Command="{Binding BackCommand}"
+                        CommandParameter="{Binding}"
+                        IsEnabled="{Binding IsBackEnabled}">
                         <Button.Background>
                             <ImageBrush ImageSource="Assets/Icons/back_arrow.png" />
                         </Button.Background>
@@ -386,6 +388,9 @@
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type vm:AddCustomerViewModel}">
                                 <v:AddCustomerView />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:InvoicesListViewModel}">
+                                <v:InvoicesListView />
                             </DataTemplate>
                         </ContentControl.Resources>
                     </ContentControl>

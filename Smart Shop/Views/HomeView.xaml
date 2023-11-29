@@ -5,8 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Smart_Shop.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Width="900"
+    Height="450"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -15,9 +16,9 @@
             <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
+            <RowDefinition Height="10" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="20" />
+            <RowDefinition Height="10" />
         </Grid.RowDefinitions>
 
         <StackPanel
@@ -25,30 +26,22 @@
             Grid.Column="1"
             Orientation="Horizontal">
             <!--#region RECENT ACTIVITY-->
-            <Border
-                Width="240"
-                Height="200"
-                Margin="10"
+            <md:Card
+                Width="220"
+                Height="220"
+                Margin="4"
                 VerticalAlignment="Top"
-                Background="{StaticResource PrimaryBackgroundToSecondaryBackgroundGradientBrush}"
-                CornerRadius="8">
-                <Border.Effect>
-                    <DropShadowEffect
-                        BlurRadius="4"
-                        Direction="270"
-                        Opacity=".6"
-                        ShadowDepth="1"
-                        Color="Black" />
-                </Border.Effect>
+                md:ElevationAssist.Elevation="Dp4"
+                UniformCornerRadius="8">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="24" />
+                        <RowDefinition Height="30" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
                     <Border
                         Grid.Row="0"
-                        Background="Green"
+                        Background="Cyan"
                         CornerRadius="8 8 0 0">
                         <TextBlock
                             HorizontalAlignment="Center"
@@ -56,74 +49,59 @@
                             Text="Recent Activity" />
                     </Border>
                 </Grid>
+            </md:Card>
 
-            </Border>
             <!--#endregion-->
 
             <!--#region RECENT CUSTOMERS-->
-            <Border
-                Width="240"
-                Height="200"
-                Margin="10"
+            <md:Card
+                Width="220"
+                Height="220"
+                Margin="4"
                 VerticalAlignment="Top"
-                Background="{StaticResource PrimaryBackgroundToSecondaryBackgroundGradientBrush}"
-                CornerRadius="8">
-                <Border.Effect>
-                    <DropShadowEffect
-                        BlurRadius="6"
-                        Direction="270"
-                        Opacity=".6"
-                        ShadowDepth="1"
-                        Color="Black" />
-                </Border.Effect>
+                md:ElevationAssist.Elevation="Dp4"
+                UniformCornerRadius="8">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="24" />
+                        <RowDefinition Height="30" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
                     <Border
                         Grid.Row="0"
-                        Background="Purple"
+                        Background="Magenta"
                         CornerRadius="8 8 0 0">
                         <TextBlock
                             HorizontalAlignment="Center"
                             FontSize="18"
-                            Text="Recent Customer" />
-
+                            Text="Recent Customers" />
                     </Border>
-                    <Border
-                        Grid.Row="1"
-                        Width="200"
-                        Height="150"
-                        Margin="5,10"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Background="{StaticResource PrimaryBackgroundToSecondaryBackgroundGradientBrush}"
-                        CornerRadius="12"
-                        BorderBrush="{StaticResource SecondaryColorBrush}"
-                        BorderThickness="1 0 1 1">
-                      
-                        <StackPanel
-                            Grid.Row="1"
-                            Margin="10"
-                            VerticalAlignment="Bottom"
-                            Orientation="Vertical">
-                            <Button
-                                Width="80"
-                                Height="20"
-                                Padding="2"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Bottom"
-                                Content="Add Customer"
-                                FontSize="8"
-                                Style="{StaticResource MaterialDesignFlatAccentBgButton}" />
-                        </StackPanel>
-                    </Border>
-
                 </Grid>
+            </md:Card>
+            <!--#endregion-->
 
-            </Border>
+            <!--#region  Test Card-->
+            <md:Card
+                Width="220"
+                Height="220"
+                Margin="4"
+                VerticalAlignment="Top"
+                md:ElevationAssist.Elevation="Dp3"
+                UniformCornerRadius="8">
+                <md:ColorZone
+                    Height="30"
+                    md:ElevationAssist.Elevation="Dp4"
+                    Mode="SecondaryMid">
+                    <Button
+                        Width="20"
+                        Height="20"
+                        Margin="20,0"
+                        HorizontalAlignment="Right"
+                        Content="{md:PackIcon Kind=Plus}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" />
+
+                </md:ColorZone>
+            </md:Card>
             <!--#endregion-->
         </StackPanel>
     </Grid>

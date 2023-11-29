@@ -38,16 +38,16 @@
              </Button.Background>
          </Button>
          <StackPanel Margin="40,0" Orientation="Horizontal">
-             <Button
+                <Button
                  Width="30"
                  Height="30"
                  Margin="4,4,10,0"
                  BorderBrush="Transparent"
                  Command="{Binding NavigateNewCustomerCommand}">
-                 <Button.Background>
-                     <ImageBrush ImageSource="/Assets/Icons/add-user.png" />
-                 </Button.Background>
-             </Button>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Assets/Icons/img_add.png" />
+                    </Button.Background>
+                </Button>
              <Button
                  Width="30"
                  Height="30"
@@ -72,16 +72,16 @@
              AutoGenerateColumns="False"
              CanUserAddRows="False"
              IsReadOnly="True"
-             ItemsSource="{Binding Customers}"
+             ItemsSource="{Binding Invoices}"
              SelectionMode="Single"
              SelectionUnit="FullRow"
              Style="{StaticResource MaterialDesignDataGrid}">
              <DataGrid.Columns>
-                 <DataGridTextColumn Binding="{Binding Identifier}" Header="IDENTIFIER" />
-                 <DataGridTextColumn Binding="{Binding CompanyName}" Header="COMPANY" />
-                 <DataGridTextColumn Binding="{Binding ContactName}" Header="CONTACT" />
-                 <DataGridTextColumn Binding="{Binding Email}" Header="EMAIL" />
-                 <DataGridTextColumn Binding="{Binding Phone}" Header="PHONE" />
+                 <DataGridTextColumn Binding="{Binding InvoiceNumber}" Header="INVOICE #" />
+                 <DataGridTextColumn Binding="{Binding RefrenceNumber}" Header="REFRENCE #" />
+                 <DataGridTextColumn Binding="{Binding Name}" Header="NAME" />
+                 <DataGridTextColumn Binding="{Binding DueDate}" Header="DUE DATE" />
+                 <DataGridTextColumn Binding="{Binding CustomerId}" Header="CUSTOMER #" />
                  <DataGridTemplateColumn Header="ACTIONS">
                      <DataGridTemplateColumn.CellTemplate>
                          <DataTemplate>

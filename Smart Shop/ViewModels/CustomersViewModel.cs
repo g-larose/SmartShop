@@ -1,10 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MaterialDesignThemes.Wpf;
+using Microsoft.EntityFrameworkCore;
 using Smart_Shop.Commands;
 using Smart_Shop.Data;
+using Smart_Shop.Dialogs;
 using Smart_Shop.Factories;
 using Smart_Shop.Interfaces;
 using Smart_Shop.Models;
+using Smart_Shop.Views;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Smart_Shop.ViewModels
@@ -18,6 +22,7 @@ namespace Smart_Shop.ViewModels
 
         public ICommand SearchCommand { get; }
         public ICommand DeleteCustomerCommand { get; set; }
+        public ICommand EditCustomerCommand { get; set; }
         public ICommand NavigateNewCustomerCommand { get; }
         public ICommand RefreshCustomersListCommand { get; }
 
@@ -35,7 +40,7 @@ namespace Smart_Shop.ViewModels
             set => OnPropertyChanged(ref _querytext, value);
         }
 
-        public CustomersViewModel(INavigator? navigator, IDbContextFactory<AppDbContext>? dbFactory)
+        public CustomersViewModel(INavigator? navigator, IDbContextFactory<AppDbContext> dbFactory)
         {
             _dbFactory = dbFactory;
             _navigator = navigator;
@@ -43,9 +48,19 @@ namespace Smart_Shop.ViewModels
             SearchCommand = new RelayCommand(Search);
             RefreshCustomersListCommand = new RelayCommand(RefreshCustomersList);
             DeleteCustomerCommand = new RelayCommand<Customer>(DeleteCustomer);
+            EditCustomerCommand = new RelayCommand<Customer>(EditCustomer);
             NavigateNewCustomerCommand = new NavigateCommand<AddCustomerViewModel>(_navigator, () => new AddCustomerViewModel(_navigator, _dbFactory));
             Customers = new();
             LoadCustomers();
+        }
+
+        private void EditCustomer(Customer customer)
+        {
+            using var db = _dbFactory!.CreateDbContext();
+            var c = db!.Customers.Where(x => x.CustomerId == customer.CustomerId).FirstOrDefault();
+            //try to open a dialog and fill with customer data.
+            EditCustomerWindow cWindow = new EditCustomerWindow();
+            cWindow.Show();
         }
 
         private void RefreshCustomersList()

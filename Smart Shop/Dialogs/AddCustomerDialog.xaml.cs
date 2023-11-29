@@ -1,5 +1,4 @@
-﻿using Smart_Shop.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Smart_Shop.Views
+namespace Smart_Shop.Dialogs
 {
     /// <summary>
-    /// Interaction logic for AddCustomerView.xaml
+    /// Interaction logic for AddCustomerDialog.xaml
     /// </summary>
-    public partial class AddCustomerView : UserControl
+    public partial class AddCustomerDialog : UserControl
     {
-        public AddCustomerView()
+        public AddCustomerDialog()
         {
             InitializeComponent();
         }
